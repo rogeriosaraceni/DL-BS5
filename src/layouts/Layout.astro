@@ -1,0 +1,37 @@
+---
+import BtnScrollToTop from '@components/BtnScrollToTop.astro';
+import Footer from '@includes/Footer.astro';
+import Head from '@includes/Head.astro';
+import Header from '@includes/Header.astro';
+import Nav from '@includes/Nav.astro';
+---
+
+<!doctype html>
+<html lang="pt-BR" data-bs-theme="light">
+    <head>
+        <Head />
+    </head>
+
+    <body>
+        <Header />
+        <Nav />
+        <main class="main" data-el="mainApp">
+            <slot />
+        </main>
+        <Footer />
+        <BtnScrollToTop />
+    </body>
+</html>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+    .main {
+        flex: 1;
+        padding-top: 2rem;
+    }
+</style>
