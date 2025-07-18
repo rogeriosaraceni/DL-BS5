@@ -2,56 +2,11 @@
 *
 *  CSS PAGES
 *
-* - list-legend (Modal)
-* - icons-fases
+* - 
+* - 
 * 
 * //////////////////////////////////////////////////////////////////// */
 
 /* --------------------------------------------------------------------
-* - list-legend (Modal)
-* -------------------------------------------------------------------- */
-.list-legend hr{
-    margin: 0.5rem 0;
-}
-
-.list-legend ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    font-size: 80%;
-}
-.list-legend ul li{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.15rem;
-}
-.list-legend ul li .bi,
-.list-legend ul li .material-icons{ 
-    font-size: 1.2rem;
-}
-
-/* --------------------------------------------------------------------
-* - icons-fases
-* -------------------------------------------------------------------- */
-.icons-fases {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-}
-.icons-fases .btn{
-    padding: 0;
-}
-.icons-fases .icon{
-    font-size: 1.4rem;
-    color: var(--grey-clean);
-}
-
-.icons-fases .icon.text-blue  { color: var(--blue);}
-.icons-fases .icon.text-green { color: var(--green);}
-.icons-fases .icon.text-red   { color: var(--red);}
-.icons-fases .icon.text-orange{ color: var(--orange);}
-.icons-fases .icon.text-yellow{ color: var(--yellow);}
+ * - 
+ * -------------------------------------------------------------------- */

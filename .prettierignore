@@ -1,6 +1,4 @@
 node_modules
 dist
 build
-public/assets/css/_variables-colors.css
-public/assets/css/_variables-colors-app.css
-public/assets/css/_variables-colors-bootstrap.css
+public/assets/css/

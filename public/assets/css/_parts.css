@@ -1,52 +1,12 @@
-/* --------------------------------------------------------------------
-* - header-app
----------------------------------------------------------------------- */
-.header-app {
-	padding-top: 90px;
-	padding-bottom: 20px;
-	margin-bottom: 1rem;
-	background-color: var(--blue-dark-app-500);
-}
-.top-page {
-	display: flex;
-	align-items: center;
-}
-.top-page .item-icon {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    padding: 0.7rem;
-    border-radius: 100%;
-    background-color: var(--blue-dark-app-300);
-}
-.top-page .item-icon img{
-	max-width: 30px;
-}
-.top-page .item-icon .icon-top-page {
-	font-size: 30px;
-	color: #fff;
-}
-.top-page .item-text {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-}
-.top-page .item-text .title-top-page,
-.top-page .item-text .text-top-page {
-	color: #fff;
-	line-height: 1;
-	font-weight: 400;
-	font-size: 1.3rem;
-}
+/* ////////////////////////////////////////////////////////////////////
+*
+*  CSS PARTS
+*
+* - header
+* - footer
+* 
+* //////////////////////////////////////////////////////////////////// */
 
-@media (max-width: 991px) {
-	.top-page .item-icon {
-		padding: 0.2rem;
-	}
-	.top-page .item-icon .icon-top-page {
-		font-size: 30px;
-	}
-	.top-page .item-text p {
-		display: none;
-	}
-}
+/* --------------------------------------------------------------------
+ * - 
+ * -------------------------------------------------------------------- */

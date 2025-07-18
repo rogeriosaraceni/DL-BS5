@@ -1,0 +1,10 @@
+[data-bs-theme=light] {
+    --app-body-bg: #fafbfe;
+    --app-nav-bg: #ffffff;
+}
+
+[data-bs-theme=dark] {
+    --app-body-bg: #343a40;
+    --app-nav-bg: #3a444e;
+
+}

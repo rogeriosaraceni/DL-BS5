@@ -11,21 +11,16 @@
 * - tab-content
 * - titles - h1, h2, h3, h4, h5, h6
 * - hr
-* - custom tooltips
-* - custom popover
 //////////////////////////////////////////////////////////////////// */
 
 
 /* --------------------------------------------------------------------
 * - variables
 * -------------------------------------------------------------------- */
-
 :root {
-    --bs-body-font-family: "Work Sans", sans-serif;
     --bs-body-font-size: 0.9rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.4;
-    --bs-body-color: #5b5d5f;
 
     --bs-border-radius: 0.425rem;
     --bs-transition-hover: all .3s ease 0s;
@@ -57,7 +52,6 @@ a {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='gray' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }
 
-
 /* --------------------------------------------------------------------
 * - breadcrumb
 ---------------------------------------------------------------------- */
@@ -68,7 +62,6 @@ a {
 .breadcrumb { background-color: transparent;}
 .breadcrumb-item a { color: #6c757d;}
 .breadcrumb-item.active { color: var(--blue-app-500);}
-
 
 /* --------------------------------------------------------------------
 btn
@@ -92,10 +85,11 @@ btn
     gap: 0.25rem;
 }
 
-@media(max-width: 1200px){ .btn-last-xl{ float: right;}}
-@media(max-width: 992px) { .btn-last-lg{ float: right;}}
-@media(max-width: 768px) { .btn-last-md{ float: right;}}
-@media(max-width: 576px) { .btn-last-sm{ float: right;}}
+@media(max-width: 1400px){ .btn-last-xxl{ float: right;}}
+@media(max-width: 1200px){ .btn-last-xl { float: right;}}
+@media(max-width: 992px) { .btn-last-lg { float: right;}}
+@media(max-width: 768px) { .btn-last-md { float: right;}}
+@media(max-width: 576px) { .btn-last-sm { float: right;}}
 
 .btn-primary,
 .btn-secondary,
@@ -277,8 +271,6 @@ btn
 	max-width: 80%!important;
 }
 
-
-
 /* --------------------------------------------------------------------
 * - nav-pills
 ---------------------------------------------------------------------- */
@@ -308,6 +300,7 @@ btn
 .nav-tabs .nav-link.active:hover{
     background-color: ;
 } */
+
 /* --------------------------------------------------------------------
 * - page-item .active/disabled
 ---------------------------------------------------------------------- */
@@ -342,27 +335,3 @@ btn
 * - hr
 ---------------------------------------------------------------------- */
 hr { opacity: 0.12;}
-
-/* --------------------------------------------------------------------
-* - custom tooltips
----------------------------------------------------------------------- */
-.tooltip-300 .tooltip-inner { max-width: 300px;}
-.tooltip-400 .tooltip-inner { max-width: 400px;}
-.tooltip-500 .tooltip-inner { max-width: 500px;}
-.tooltip-600 .tooltip-inner { max-width: 600px;}
-.tooltip-700 .tooltip-inner { max-width: 700px;}
-.tooltip-800 .tooltip-inner { max-width: 800px;}
-
-/* --------------------------------------------------------------------
-* - custom popover
----------------------------------------------------------------------- */
-.popover-300  { --bs-popover-max-width: 300px;}
-.popover-400  { --bs-popover-max-width: 400px;}
-.popover-500  { --bs-popover-max-width: 500px;}
-.popover-600  { --bs-popover-max-width: 600px;}
-.popover-700  { --bs-popover-max-width: 700px;}
-.popover-800  { --bs-popover-max-width: 800px;}
-.popover-900  { --bs-popover-max-width: 900px;}
-.popover-1000 { --bs-popover-max-width: 1000px;}
-.popover-1100 { --bs-popover-max-width: 1100px;}
-.popover-1200 { --bs-popover-max-width: 1200px;}
