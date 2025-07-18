@@ -1,0 +1,204 @@
+/* ////////////////////////////////////////////////////////////////////
+custom-file
+form-control / form-select
+form-check-label
+form-check-input
+form-group
+input
+input-group-text
+label
+label-clearfix
+list-group-item
+readonly, disabled
+placeholder
+Bootstrap-select
+
+
+//////////////////////////////////////////////////////////////////// */
+
+/* --------------------------------------------------------------------
+custom-file
+* -------------------------------------------------------------------- */
+.custom-file { margin-bottom: 0;}
+.custom-file-input { margin: 0;}
+.custom-file-label { border-radius: 0.75rem 0.25rem 0.25rem 0.75rem;}
+
+.wrapper-custom-file {
+    position: relative;
+}
+.wrapper-custom-file .content-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.wrapper-custom-file .btns {
+    display: flex;
+    align-items: center;
+}
+
+/* --------------------------------------------------------------------
+form-control / form-select / bootstrap-select
+* -------------------------------------------------------------------- */
+.form-control,
+.form-select{
+    font-size: 0.9rem;
+}
+
+.form-control{
+    padding: 0.275rem 0.75rem 0.275rem 0.75rem;
+    background-color: var(--bs-body-bg);
+}
+.form-select{
+    padding: 0.275rem 2.25rem 0.275rem 0.75rem;
+}
+
+/* --------------------------------------------------------------------
+form-check-label
+* -------------------------------------------------------------------- */
+.form-check-label {
+    display: flex;
+    align-items: center;
+}
+
+/* --------------------------------------------------------------------
+form-check-input
+* -------------------------------------------------------------------- */
+.form-check-input {
+    border-color: #aaa;
+}
+
+/* --------------------------------------------------------------------
+form-group
+* -------------------------------------------------------------------- */
+.form-group { margin-bottom: 0.5rem;}
+
+/* --------------------------------------------------------------------
+input
+* -------------------------------------------------------------------- */
+/* Chrome, Safari, Edge, Opera */
+input[type="number"][readonly]::-webkit-outer-spin-button,
+input[type="number"][readonly]::-webkit-inner-spin-button {
+    -appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number][readonly] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+/* --------------------------------------------------------------------
+input-group-text
+* -------------------------------------------------------------------- */
+.input-group-text {
+	font-size: inherit;
+	padding: 0.175rem 0.25rem;
+	font-size: 0.8rem;
+	border-radius: 0.75rem;
+}
+
+/* --------------------------------------------------------------------
+label
+* -------------------------------------------------------------------- */
+label {
+    position: relative;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* --------------------------------------------------------------------
+label-clearfix
+* -------------------------------------------------------------------- */
+.label-clearfix::before {
+    display: block;
+    clear: both;
+    content: "\00a0";
+}
+
+@media(max-width: 1200px){.label-clearfix.last-xl::before { content: "";}}
+@media(max-width: 992px) {.label-clearfix.last-lg::before { content: "";}}
+@media(max-width: 768px) {.label-clearfix.last-md::before { content: "";}}
+@media(max-width: 576px) {.label-clearfix.last-sm::before { content: "";}}
+
+/* --------------------------------------------------------------------
+list-group-item
+* -------------------------------------------------------------------- */
+.list-group-item label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+.list-group-item label span {
+    margin-left: 5px;
+}
+
+/* --------------------------------------------------------------------
+readonly, disabled
+* -------------------------------------------------------------------- */
+.form-control:disabled,
+.form-control[readonly] {
+    cursor: not-allowed;
+    background-color: rgba(233, 236, 239, 0.4);
+}
+.form-control:focus:disabled,
+.form-control:focus[readonly] {
+    box-shadow: none;
+    border-color: var(--bs-border-color);
+    background-color: rgba(233, 236, 239, 0.4);
+}
+
+/* --------------------------------------------------------------------
+placeholder
+* -------------------------------------------------------------------- */
+:root{
+    --font-size-placeholder: 0.9rem;
+}
+::-webkit-input-placeholder { font-size: var(--font-size-placeholder);}
+:-ms-input-placeholder { font-size: var(--font-size-placeholder);}
+::-moz-placeholder { font-size: var(--font-size-placeholder);}
+:-moz-placeholder { font-size: var(--font-size-placeholder);}
+
+/* --------------------------------------------------------------------
+Bootstrap-select
+* -------------------------------------------------------------------- */
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 100%;
+}
+
+.bootstrap-select.show-tick .dropdown-menu li a:before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    right: 15px;
+    top: 6px;
+    width: 20px;
+    height: 18px;
+    border: 1px solid #ccc;
+}
+
+.bootstrap-select.show-tick .bs-ok-default:after {
+    border-width: 0 0.15em 0.15em 0 !important;
+    border-color: #4095f1 !important;
+    margin-left: -14px;
+}
+
+.bootstrap-select>.dropdown-toggle {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+}
+.bootstrap-select> .dropdown-toggle::after {
+    width: 7px;
+    height: 7px;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0.12rem solid #343a40;
+    border-left: 0.12rem solid #343a40;
+    transform: rotate(225deg);
+}

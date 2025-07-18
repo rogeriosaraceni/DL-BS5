@@ -1,0 +1,121 @@
+/* --------------------------------------------------------------------
+* - nav
+---------------------------------------------------------------------- */
+.navbar-app .navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-app .nav-link,
+.navbar-app .navbar-brand {
+	color: #344767;
+	font-size: 0.875rem;
+}
+
+.navbar-app .nav-link{
+	border-radius: 4px;
+}
+.navbar-app .nav-link:hover{
+	background-color: #f8f8f8;
+}
+.navbar-app .nav-item.active> .nav-link{
+	background-color: #e4e8eb;
+}
+
+.navbar-app .navbar-toggler {
+	background-color: #fff;
+}
+
+
+.navbar-app .info-user-mobile{ 
+	display: none;
+}
+
+
+@media (max-width: 991.98px) {
+	.navbar-toggler + .navbar-collapse .dropdown.nav-item .dropdown-menu {
+		overflow: auto;
+	}
+}
+
+@media (max-width: 576px) {
+	.navbar-app .navbar-toggler {
+		padding: 0;
+	}
+	.navbar-app .info-user-desktop{ 
+		display: none!important;
+	}
+	.navbar-app .info-user-mobile{ 
+		display: block;
+	}
+}
+
+/* offcanvas-collapse (custom) */
+@media screen and (max-width: 1200px) {
+	.navbar-app .nav-link{
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+    .navbar-app .offcanvas-collapse {
+        position: fixed;
+        /* Height of navbar */
+        top: 80px;
+        bottom: 0;
+        left: 100%;
+        width: 100%;
+        padding: 1rem;
+        overflow-y: auto;
+        visibility: hidden;
+        background-color: #fff;
+        backdrop-filter: blur(0);
+        transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+    }
+
+    .navbar-app .offcanvas-collapse.open {
+        visibility: visible;
+        transform: translateX(-100%);
+    }
+}
+
+/* --------------------------------------------------------------------
+* - logo
+---------------------------------------------------------------------- */
+.wrapper-logo {
+	position: relative;
+	display: inline-flex;
+	flex-direction: column;
+	font-family: "Open Sans", sans-serif;
+	color: var(--blue-dark-app-500);
+}
+.wrapper-logo .text-novo {
+	padding-left: 2.65rem;
+	line-height: 1;
+}
+.wrapper-logo .content-logo-ano {
+	display: flex;
+	line-height: 1;
+}
+.wrapper-logo .content-logo-ano img {
+	max-width: 120px;
+	height: auto;
+}
+.wrapper-logo .content-logo-ano .text-ano {
+	display: inline-block;
+	font-size: 0.95rem;
+	line-height: 1;
+	padding-left: 0.2rem;
+	writing-mode: vertical-lr;
+	text-align: center;
+}
+
+@media (max-width: 768px) {
+	.wrapper-logo .content-logo-ano img { max-width: 100px;}
+	.wrapper-logo .text-novo { padding-left: 2.2rem;}
+	.wrapper-logo .content-logo-ano .text-ano { font-size: 0.8rem;}
+}
+
+@media (max-width: 576px) {
+    .wrapper-logo .content-logo-ano img {
+        max-width: 80px;
+    }
+}

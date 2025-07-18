@@ -1,0 +1,368 @@
+/* ////////////////////////////////////////////////////////////////////
+* - variables
+* - accordion
+* - breadcrumb-app
+* - btn
+* - card / cadr-body
+* - container-fluid
+* - modal
+* - nav-tabs
+* - page-item .active/disabled
+* - tab-content
+* - titles - h1, h2, h3, h4, h5, h6
+* - hr
+* - custom tooltips
+* - custom popover
+//////////////////////////////////////////////////////////////////// */
+
+
+/* --------------------------------------------------------------------
+* - variables
+* -------------------------------------------------------------------- */
+
+:root {
+    --bs-body-font-family: "Work Sans", sans-serif;
+    --bs-body-font-size: 0.9rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.4;
+    --bs-body-color: #5b5d5f;
+
+    --bs-border-radius: 0.425rem;
+    --bs-transition-hover: all .3s ease 0s;
+    --bs-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.03);
+}
+
+a { 
+    transition: var(--bs-transition-hover);
+}
+
+/* --------------------------------------------------------------------
+* - accordion
+---------------------------------------------------------------------- */
+.accordion-button {
+    padding: 0.5rem 1rem;
+    color: #444;
+    background-color: #fafafa;
+}
+.accordion-button:not(.collapsed) {
+    color: #444;
+    background-color: #eee;
+}
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button::after,
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='gray' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+
+/* --------------------------------------------------------------------
+* - breadcrumb
+---------------------------------------------------------------------- */
+.breadcrumb {
+   padding: 0.25rem 0.5rem;
+   margin-bottom: 0.5rem;
+}
+.breadcrumb { background-color: transparent;}
+.breadcrumb-item a { color: #6c757d;}
+.breadcrumb-item.active { color: var(--blue-app-500);}
+
+
+/* --------------------------------------------------------------------
+btn
+---------------------------------------------------------------------- */
+.btn {
+    --bs-btn-padding-x: .75rem;
+    --bs-btn-padding-y: .215rem;
+    --bs-btn-font-size: 0.9rem;
+    /* --bs-btn-border-radius: var(--bs-border-radius); */
+}
+.btn-small{
+    padding: .105rem .45rem;
+}
+.btn-transparent{
+    border: none;
+    background-color: transparent;
+}
+.btn-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+@media(max-width: 1200px){ .btn-last-xl{ float: right;}}
+@media(max-width: 992px) { .btn-last-lg{ float: right;}}
+@media(max-width: 768px) { .btn-last-md{ float: right;}}
+@media(max-width: 576px) { .btn-last-sm{ float: right;}}
+
+.btn-primary,
+.btn-secondary,
+.btn-success,
+.btn-danger,
+.btn-dark {
+    transition: all 0.2s;
+    --bs-btn-color: #fff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-color: #fff;
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-warning,
+.btn-info,
+.btn-light {
+    transition: all 0.2s;
+    --bs-btn-color: #000;
+    --bs-btn-hover-color: #000;
+    --bs-btn-active-color: #000;
+    --bs-btn-disabled-color: #000;
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--primary);
+    --bs-btn-border-color: var(--primary);
+    --bs-btn-hover-bg: var(--blue-app-500);
+    --bs-btn-hover-border-color: var(--blue-app-500);
+    --bs-btn-active-bg:var(--blue-app-500);
+    --bs-btn-active-border-color: var(--blue-app-500);
+    --bs-btn-disabled-bg: var(--primary);
+    --bs-btn-disabled-border-color: var(--primary);
+}
+.btn-secondary {
+    --bs-btn-bg: var(--secondary);
+    --bs-btn-border-color: var(--secondary);
+    --bs-btn-hover-bg: var(--gray-app-500);
+    --bs-btn-hover-border-color: var(--gray-app-500);
+    --bs-btn-active-bg:var(--gray-app-500);
+    --bs-btn-active-border-color: var(--gray-app-500);
+    --bs-btn-disabled-bg: var(--secondary);
+    --bs-btn-disabled-border-color: var(--secondary);
+}
+.btn-success {
+    --bs-btn-bg: var(--success);
+    --bs-btn-border-color: var(--success);
+    --bs-btn-hover-bg: var(--green-app-400);
+    --bs-btn-hover-border-color: var(--green-app-400);
+    --bs-btn-active-bg:var(--green-app-400);
+    --bs-btn-active-border-color: var(--green-app-400);
+    --bs-btn-disabled-bg: var(--success);
+    --bs-btn-disabled-border-color: var(--success);
+}
+.btn-danger {
+    --bs-btn-bg: var(--danger);
+    --bs-btn-border-color: var(--danger);
+    --bs-btn-hover-bg: var(--red-app-500);
+    --bs-btn-hover-border-color: var(--red-app-500);
+    --bs-btn-active-bg:var(--red-app-500);
+    --bs-btn-active-border-color: var(--red-app-500);
+    --bs-btn-disabled-bg: var(--danger);
+    --bs-btn-disabled-border-color: var(--danger);
+}
+.btn-warning {
+    --bs-btn-bg: var(--warning);
+    --bs-btn-border-color: var(--warning);
+    --bs-btn-hover-bg: var(--yellow-app-500);
+    --bs-btn-hover-border-color: var(--yellow-app-500);
+    --bs-btn-active-bg:var(--yellow-app-500);
+    --bs-btn-active-border-color: var(--yellow-app-500);
+    --bs-btn-disabled-bg: var(--warning);
+    --bs-btn-disabled-border-color: var(--warning);
+}
+.btn-info {
+    --bs-btn-bg: #0dcaf0;
+    --bs-btn-border-color: #0dcaf0;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #31d2f2;
+    --bs-btn-hover-border-color: #25cff2;
+    --bs-btn-active-bg: #3dd5f3;
+    --bs-btn-active-border-color: #25cff2;
+    --bs-btn-disabled-bg: #0dcaf0;
+    --bs-btn-disabled-border-color: #0dcaf0;
+}
+.btn-light {
+    --bs-btn-bg: #f8f9fa;
+    --bs-btn-border-color: #f8f9fa;
+    --bs-btn-hover-bg: #d3d4d5;
+    --bs-btn-hover-border-color: #c6c7c8;
+    --bs-btn-active-bg: #c6c7c8;
+    --bs-btn-active-border-color: #babbbc;
+    --bs-btn-disabled-bg: #f8f9fa;
+    --bs-btn-disabled-border-color: #f8f9fa;
+}
+.btn-dark {
+    --bs-btn-bg: #212529;
+    --bs-btn-border-color: #212529;
+    --bs-btn-hover-bg: #424649;
+    --bs-btn-hover-border-color: #373b3e;
+    --bs-btn-active-bg: #4d5154;
+    --bs-btn-active-border-color: #373b3e;
+    --bs-btn-disabled-bg: #212529;
+    --bs-btn-disabled-border-color: #212529;
+}
+
+/* --------------------------------------------------------------------
+* - card / cadr-body
+---------------------------------------------------------------------- */
+.card {
+    margin: 0 0 1.3rem 0;
+    border: 0;
+    border-radius: var(--bs-border-radius);
+    box-shadow: var(--bs-box-shadow);
+    background-color: #fff;
+}
+.card .card-header {
+   padding: 15px 15px 0;
+   background-color: #fff;
+   border-bottom: none !important;
+}
+.card .card-footer {
+   padding: 15px 15px 10px 15px;
+   background-color: transparent;
+   line-height: 30px;
+   border-top: none !important;
+   font-size: 14px;
+}
+.card .card-footer .legend { padding: 5px 0;}
+.card .card-footer hr { margin-top: 5px; margin-bottom: 5px;}
+
+@media (min-width: 768px) {
+    .card {
+        margin-right: 1.5rem !important;
+        margin-left: 1.5rem !important;
+    }
+    body.popup .card {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+}
+
+/* --------------------------------------------------------------------
+* - container-fluid
+---------------------------------------------------------------------- */
+.container-fluid{
+    max-width: 1920px;
+}
+
+/* --------------------------------------------------------------------
+* - modal
+---------------------------------------------------------------------- */
+.modal .btn-close{ outline: none;}
+
+.modal-content-app{
+	padding: 1rem;
+}
+.modal-content-app .modal-body{
+	padding-left: 0;
+	padding-right: 0;
+}
+.modal-content-app .modal-footer{
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+}
+.modal-content.modal-content-app{
+    --bs-modal-bg: #f0f2f5;
+}
+.modal-content.modal-content-app .card{
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+.modal-max{
+	max-width: 80%!important;
+}
+
+
+
+/* --------------------------------------------------------------------
+* - nav-pills
+---------------------------------------------------------------------- */
+.nav-pills .nav-link{
+    color: var(--blue-dark-app-500);
+}
+.nav-pills .nav-link.active, 
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: var(--blue-dark-app-500);
+}
+
+/* --------------------------------------------------------------------
+* - nav-tabs
+---------------------------------------------------------------------- */
+.nav-tabs .nav-link{
+    color: #999;
+    transition: all 0.3s;
+}
+.nav-tabs .nav-link:hover{
+    color: #333;
+}
+/* .nav-tabs .nav-link.active{
+    color: #fff!important;
+    background-color: ;
+}
+.nav-tabs .nav-link.active:hover{
+    background-color: ;
+} */
+/* --------------------------------------------------------------------
+* - page-item .active/disabled
+---------------------------------------------------------------------- */
+.active>.page-link, .page-link.active {
+    color: var(--bs-pagination-active-color);
+    background-color: var(--bs-pagination-active-bg);
+    border-color: var(--bs-pagination-active-border-color);
+}
+.disabled>.page-link,
+.page-link.disabled {
+    background-color: transparent;
+}
+
+/* --------------------------------------------------------------------
+* - tab-content
+---------------------------------------------------------------------- */
+.tab-content {
+    border-left: 1px solid var(--bs-border-color);
+    border-right: 1px solid var(--bs-border-color);
+    border-bottom: 1px solid var(--bs-border-color);
+    padding: 10px;
+}
+
+/* --------------------------------------------------------------------
+* - titles - h1, h2, h3, h4, h5, h6
+---------------------------------------------------------------------- */
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+   font-weight: 600;
+}
+
+/* --------------------------------------------------------------------
+* - hr
+---------------------------------------------------------------------- */
+hr { opacity: 0.12;}
+
+/* --------------------------------------------------------------------
+* - custom tooltips
+---------------------------------------------------------------------- */
+.tooltip-300 .tooltip-inner { max-width: 300px;}
+.tooltip-400 .tooltip-inner { max-width: 400px;}
+.tooltip-500 .tooltip-inner { max-width: 500px;}
+.tooltip-600 .tooltip-inner { max-width: 600px;}
+.tooltip-700 .tooltip-inner { max-width: 700px;}
+.tooltip-800 .tooltip-inner { max-width: 800px;}
+
+/* --------------------------------------------------------------------
+* - custom popover
+---------------------------------------------------------------------- */
+.popover-300  { --bs-popover-max-width: 300px;}
+.popover-400  { --bs-popover-max-width: 400px;}
+.popover-500  { --bs-popover-max-width: 500px;}
+.popover-600  { --bs-popover-max-width: 600px;}
+.popover-700  { --bs-popover-max-width: 700px;}
+.popover-800  { --bs-popover-max-width: 800px;}
+.popover-900  { --bs-popover-max-width: 900px;}
+.popover-1000 { --bs-popover-max-width: 1000px;}
+.popover-1100 { --bs-popover-max-width: 1100px;}
+.popover-1200 { --bs-popover-max-width: 1200px;}

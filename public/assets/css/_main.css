@@ -1,0 +1,225 @@
+/* ////////////////////////////////////////////////////////////////////
+*
+*  CSS APP
+*
+* - html / body / main / container-fluid
+* - breadcrumb
+* - title-app
+* - links
+* - Shadows
+* - Scrollbar
+* - btn-acessar
+* - table-asp
+* - complementary classes
+*
+* //////////////////////////////////////////////////////////////////// */
+
+/* --------------------------------------------------------------------
+* - html / body / main / container-fluid
+* -------------------------------------------------------------------- */
+html {
+   height: 100%;
+}
+body {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   overflow-x: hidden;
+   background-color: #f2f5f9;
+}
+body.popup {
+   padding: 1rem;
+}
+
+.main {
+   flex: 1;
+   padding-bottom: 30px;
+}
+
+/* --------------------------------------------------------------------
+* - title-app
+---------------------------------------------------------------------- */
+.title-app{
+   position: relative;
+   font-weight: 400;
+   margin-bottom: 1rem;
+   padding-bottom: 0.3rem;
+}
+.title-app::after{
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 50%;
+   height: 1px;
+   background-color: var(--orange);
+}
+
+/* --------------------------------------------------------------------
+* - links
+* -------------------------------------------------------------------- */
+a { transition: var(--transition-hover-default);}
+
+/* --------------------------------------------------------------------
+* - shadows
+* -------------------------------------------------------------------- */
+.shadow-default{ box-shadow: var(--shadow-default);}
+.shadow { box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06)!important;}
+.shadow-blur { box-shadow: inset 0 0 1px 1px hsla(0,0%,100%,.9),0 20px 27px 0 rgba(0,0,0,.05)!important;}
+
+/* --------------------------------------------------------------------
+* - Scrollbar CSS v1.2 
+* - Last update: 06 jul 2021
+* - Rogério Saraceni
+* -------------------------------------------------------------------- */
+:root{
+   --scrollbar-bg: #f7f2f2;
+   --scrollbar-bg-track: #bebcbc;
+   --scrollbar-bg-thumb: #bbb5b5;
+   --scrollbar-vertical: 8px;
+   --scrollbar-horizontal: 8px;
+}
+
+/* Works on Firefox */
+* {
+   scrollbar-width: thin;
+   scrollbar-color: var(--bg-scrollbar-track) var(--scrollbar-bg);
+}
+/* Works on Chrome, Edge, and Safari */
+::-webkit-scrollbar { width: 8px;}
+::-webkit-scrollbar { height: 8px;}
+::-webkit-scrollbar-track { background: var(--scrollbar-bg);}
+::-webkit-scrollbar-thumb {
+   border-radius: 10px;
+   border: 1px solid transparent;
+   background-color: var(--scrollbar-bg-track);
+}
+
+/* --------------------------------------------------------------------
+* - btn-acessar
+---------------------------------------------------------------------- */
+.btn-acessar{
+   transition: all 0.2s;
+   border: 0;
+   background-color: var(--blue-app-300);
+}
+.btn-acessar:hover{
+   background-color: var(--blue-app-500);
+}
+.btn-acessar img{
+   width: 28px;
+}
+
+/* --------------------------------------------------------------------
+* - table-asp
+---------------------------------------------------------------------- */
+.paginacao_master {
+    margin: 10px 0;
+    width: 100%;
+    height: 60px;
+    font-size: 12px;
+    text-align: center;
+}
+.paginacao_master_1 { height: 30px; color: #777;}
+.paginacao_master_1_bold { font-weight: bold;}
+
+.master_ul {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.master_ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+.master_ul li.active_paginacao {
+    font-weight: bold;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 4px;
+    border: 1px solid #4aa3df;
+    background-color: #4aa3df;
+    font-weight: normal;
+}
+.master_ul li a {
+    display: block;
+    padding: 5px 10px;
+    color: #666;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #f8f8f8;
+}
+.master_ul li a:hover { background-color: #f1f1f1;}
+
+.sem_margem_right { margin-right: 0px !important;}
+
+.seta_right,
+.seta_left {
+    border: solid #999;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3px;
+}
+.seta_right {
+    -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+}
+.seta_left {
+    -webkit-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+            transform: rotate(135deg);
+}
+
+/* --------------------------------------------------------------------
+* - complementary classes
+---------------------------------------------------------------------- */
+.flex-1{
+    flex: 1;
+}
+
+.border-radius-xl { border-radius: 0.75rem;}
+.border-radius-lg { border-radius: 0.5rem;}
+
+.blur {
+   box-shadow: inset 0 0 2px #fefefed1;
+   -webkit-backdrop-filter: saturate(200%) blur(30px);
+   backdrop-filter: saturate(200%) blur(30px);
+   background-color: hsla(0,0%,100%,.8)!important;
+}
+.bg-cover{ background-size: cover;}
+.bg-gradient-secondary { background-image: linear-gradient(195deg,#747b8a,#495361);}
+
+.cursor-pointer{ cursor: pointer;}
+.cursor-default{ cursor: default;}
+
+.font-100{ font-weight: 100;}
+.font-200{ font-weight: 200;}
+.font-300{ font-weight: 300;}
+.font-400{ font-weight: 400;}
+.font-500{ font-weight: 500;}
+.font-600{ font-weight: 600;}
+.font-700{ font-weight: 700;}
+.font-800{ font-weight: 800;}
+
+.min-vh-55 { min-height: 55vh!important;}
+.min-vh-75 { min-height: 75vh!important;}
+
+.mt-n5 { margin-top: -3rem!important;}
+.mt-n6 { margin-top: -4rem!important;}
+
+.opacity-1 { opacity: .1!important;}
+.opacity-2 { opacity: .2!important;}
+.opacity-3 { opacity: .3!important;}
+.opacity-4 { opacity: .4!important;}
+.opacity-5 { opacity: .5!important;}
+
+.z-index-sticky { z-index: 1020;} 
+
+@media (min-width: 768px){
+   .mx-md-4 {
+      margin-right: 1.5rem!important;
+      margin-left: 1.5rem!important;
+   }
+}
