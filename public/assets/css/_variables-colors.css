@@ -111,6 +111,14 @@
     --black-900: #040505;
 }
 
+:root {
+    --primary:   var(--blue-400);
+    --secondary: var(--grey-400);
+    --success:   var(--green-400);
+    --danger:    var(--red-400);
+    --warning:   var(--orange-400);
+}
+
 /* --------------------------------------------------------------------
 * - Background Utilities
 * - Background classes para cores customizadas (100–900)

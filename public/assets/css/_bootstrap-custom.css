@@ -24,7 +24,6 @@
 
     --bs-border-radius: 0.425rem;
     --bs-transition-hover: all .3s ease 0s;
-    --bs-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.03);
 }
 
 a { 
@@ -207,11 +206,9 @@ btn
     border: 0;
     border-radius: var(--bs-border-radius);
     box-shadow: var(--bs-box-shadow);
-    background-color: #fff;
 }
 .card .card-header {
    padding: 15px 15px 0;
-   background-color: #fff;
    border-bottom: none !important;
 }
 .card .card-footer {
@@ -247,22 +244,20 @@ btn
 ---------------------------------------------------------------------- */
 .modal .btn-close{ outline: none;}
 
-.modal-content-app{
+.modal-content{
 	padding: 1rem;
 }
-.modal-content-app .modal-body{
+.modal-content .modal-body{
 	padding-left: 0;
 	padding-right: 0;
 }
-.modal-content-app .modal-footer{
+.modal-content .modal-footer{
 	padding-left: 0;
 	padding-right: 0;
 	padding-bottom: 0;
 }
-.modal-content.modal-content-app{
-    --bs-modal-bg: #f0f2f5;
-}
-.modal-content.modal-content-app .card{
+
+.modal-content.modal-content .card{
     margin-left: 0!important;
     margin-right: 0!important;
 }
@@ -271,35 +266,14 @@ btn
 	max-width: 80%!important;
 }
 
-/* --------------------------------------------------------------------
-* - nav-pills
----------------------------------------------------------------------- */
-.nav-pills .nav-link{
-    color: var(--blue-dark-app-500);
-}
-.nav-pills .nav-link.active, 
-.nav-pills .show>.nav-link {
-    color: #fff;
-    background-color: var(--blue-dark-app-500);
-}
+
 
 /* --------------------------------------------------------------------
 * - nav-tabs
 ---------------------------------------------------------------------- */
 .nav-tabs .nav-link{
-    color: #999;
     transition: all 0.3s;
 }
-.nav-tabs .nav-link:hover{
-    color: #333;
-}
-/* .nav-tabs .nav-link.active{
-    color: #fff!important;
-    background-color: ;
-}
-.nav-tabs .nav-link.active:hover{
-    background-color: ;
-} */
 
 /* --------------------------------------------------------------------
 * - page-item .active/disabled
