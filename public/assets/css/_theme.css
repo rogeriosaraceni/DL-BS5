@@ -60,8 +60,9 @@ bootstrap colors
     }
 
     .dropdown-menu {
-        --bs-dropdown-bg: #2e363f;
+        --bs-dropdown-bg: #2a3036;
         --bs-dropdown-border-color: #3a3939;
+        --bs-dropdown-link-hover-bg: #37404a;
     }
     
 }
