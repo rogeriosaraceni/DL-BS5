@@ -1,15 +1,8 @@
 /* --------------------------------------------------------------------
  * - nav
 ---------------------------------------------------------------------- */
-
-/* === Estrutura e comportamento === */
-
 .navbarApp{
     background-color: var(--app-nav-bg);
-}
-
-.navbarApp .navbar-toggler {
-    background-color: #fff;
 }
 
 .navbarApp .navbar-toggler:focus {
@@ -19,22 +12,23 @@
 .navbarApp .nav-link {
     border-radius: 4px;
 }
-
+.navbarApp .nav-link:hover {
+    color: var(--app-nav-link-hover);
+}
 .navbarApp .nav-item.active > .nav-link {
-    background-color: #e4e8eb;
+    background-color: var(--app-nav-active-bg);
+}
+.navbarApp .nav-item.active > .nav-link:hover {
+    background-color: var(--app-nav-active-hover-bg);
 }
 
-/* === Aparência geral === */
+/* === font-size === */
 .navbarApp .nav-link,
 .navbarApp .navbar-brand {
     font-size: 0.875rem;
 }
 
-.navbarApp .nav-link:hover {
-    color: #f8f8f8;
-}
-
-/* === Informações do usuário === */
+/* === info-user-mobile === */
 .navbarApp .info-user-mobile {
     display: none;
 }
@@ -79,7 +73,7 @@
         padding: 1rem;
         overflow-y: auto;
         visibility: hidden;
-        background-color: #fff;
+        background-color: var(--app-nav-offcanvas-bg);
         backdrop-filter: blur(0);
         transition:
             transform 0.3s ease-in-out,

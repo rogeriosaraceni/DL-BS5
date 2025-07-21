@@ -1,9 +1,70 @@
+/* --------------------------------------------------------------------
+app colors
+-------------------------------------------------------------------- */
 [data-bs-theme=light] {
     --app-body-bg: #fafbfe;
-    --app-nav-bg: #ffffff;
+
+    --app-nav-bg: #fff;
+    --app-nav-link-hover: #111;
+    --app-nav-active-bg: #f4f6f7;
+    --app-nav-active-hover-bg: #e4e8eb;
+    --app-nav-offcanvas-bg: #fff;
+
+    --app-sidebar-bg: #313a46;
+
+
 }
 
 [data-bs-theme=dark] {
     --app-body-bg: #343a40;
+
     --app-nav-bg: #3a444e;
+    --app-nav-link-hover: #f8f8f8;
+    --app-nav-active-bg: #33383d;
+    --app-nav-active-hover-bg: #2a2e31;
+    --app-nav-offcanvas-bg: #3a444e;
+
+
+    --app-sidebar-bg: #3a444e;
+
+
 }
+
+
+/* --------------------------------------------------------------------
+bootstrap colors
+-------------------------------------------------------------------- */
+[data-bs-theme=light] {
+    body{
+        --bs-body-color: #444a4e;
+    }
+
+    .card {
+        --bs-card-bg: #ffffff;
+    }
+
+    .dropdown-menu {
+        --bs-dropdown-bg: #fff;
+        --bs-dropdown-border-color: #efefef;
+    }
+
+}
+
+[data-bs-theme=dark] {
+    body{
+        --bs-body-color: #dcdfe2;
+    }
+
+    .card {
+        --bs-card-bg: #37404a;
+    }
+
+    .dropdown-menu {
+        --bs-dropdown-bg: #2e363f;
+        --bs-dropdown-border-color: #3a3939;
+    }
+    
+}
+
+
+
