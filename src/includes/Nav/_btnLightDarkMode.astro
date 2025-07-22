@@ -1,3 +1,25 @@
+<style>
+    .bi-sun-moon::before {
+        display: inline-block;
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: 400 !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -0.125em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    html[data-bs-theme='light'] #light-dark-mode .bi-sun-moon::before {
+        content: '\F5A2';
+    }
+    html[data-bs-theme='dark'] #light-dark-mode .bi-sun-moon::before {
+        content: '\F497';
+    }
+</style>
+
 <span class="nav-link" id="light-dark-mode" data-bs-toggle="tooltip" data-bs-title="Theme">
     <i class="bi bi-sun-moon fs-4"></i>
 </span>
@@ -24,25 +46,3 @@
         });
     })();
 </script>
-
-<style>
-    .bi-sun-moon::before {
-        display: inline-block;
-        font-family: bootstrap-icons !important;
-        font-style: normal;
-        font-weight: 400 !important;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        vertical-align: -0.125em;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-    html[data-bs-theme='light'] #light-dark-mode .bi-sun-moon::before {
-        content: '\F5A2';
-    }
-    html[data-bs-theme='dark'] #light-dark-mode .bi-sun-moon::before {
-        content: '\F497';
-    }
-</style>

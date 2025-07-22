@@ -10,7 +10,7 @@ app colors
     --app-nav-active-hover-bg: #e4e8eb;
     --app-nav-offcanvas-bg: #fff;
 
-    --app-sidebar-bg: #313a46;
+    --app-sidebar-bg: #1a1f2c;
 
 
 }
@@ -25,7 +25,7 @@ app colors
     --app-nav-offcanvas-bg: #3a444e;
 
 
-    --app-sidebar-bg: #3a444e;
+    --app-sidebar-bg: #1a1f2c;
 
 
 }
@@ -35,6 +35,8 @@ app colors
 bootstrap colors
 -------------------------------------------------------------------- */
 [data-bs-theme=light] {
+    --bs-box-shadow: 0px 1px 5px 0px rgba(154, 161, 171, 0.15);
+
     body{
         --bs-body-color: #444a4e;
     }
@@ -51,6 +53,8 @@ bootstrap colors
 }
 
 [data-bs-theme=dark] {
+    --bs-box-shadow: 0px 0px 35px 0px rgba(49, 57, 66, 0.5);
+    
     body{
         --bs-body-color: #dcdfe2;
     }
