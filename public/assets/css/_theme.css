@@ -10,23 +10,19 @@ app colors
     --app-nav-active-hover-bg: #e4e8eb;
     --app-nav-offcanvas-bg: #fff;
 
-    --app-sidebar-bg: #1a1f2c;
-
-
+    --app-footer-bg: #fff;
 }
 
 [data-bs-theme=dark] {
-    --app-body-bg: #343a40;
+    --app-body-bg: #202634;
 
-    --app-nav-bg: #3a444e;
+    --app-nav-bg: #1a1f2c;
     --app-nav-link-hover: #f8f8f8;
     --app-nav-active-bg: #33383d;
     --app-nav-active-hover-bg: #2a2e31;
     --app-nav-offcanvas-bg: #3a444e;
 
-
-    --app-sidebar-bg: #1a1f2c;
-
+    --app-footer-bg: #1a1f2c;
 
 }
 
@@ -47,7 +43,6 @@ bootstrap colors
 
     .dropdown-menu {
         --bs-dropdown-bg: #fff;
-        --bs-dropdown-border-color: #efefef;
     }
 
 }
@@ -60,12 +55,11 @@ bootstrap colors
     }
 
     .card {
-        --bs-card-bg: #37404a;
+        --bs-card-bg: #293042;
     }
 
     .dropdown-menu {
-        --bs-dropdown-bg: #2a3036;
-        --bs-dropdown-border-color: #3a3939;
+        --bs-dropdown-bg: #293042;
         --bs-dropdown-link-hover-bg: #37404a;
     }
     

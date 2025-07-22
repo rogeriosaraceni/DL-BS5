@@ -7,7 +7,7 @@
     --width-sidebarMin: 60px;
 
     /* sidebar background */
-    --bg-color-sidebar: #293042;
+    --sidebar-bg: #293042;
 
     /* sidebar text color */
     --navlink-color-sidebar: #c9d3e2;
@@ -27,7 +27,7 @@
     left: 0;
     width: var(--width-sidebar);
     height: 100vh;
-    background-color: var(--app-sidebar-bg);
+    background-color: var(--sidebar-bg);
     transition: all 0.3s;
 }
 
