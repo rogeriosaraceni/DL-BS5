@@ -1,0 +1,77 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+---
+
+<Layout>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">File Uploads Regras</h5>
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="d-flex aling-items-center gap-2">
+                    <label>
+                        <div class="d-flex aling-items-center gap-2">
+                            <span>Anexar Arquivo:</span>
+                            <span data-bs-toggle="tooltip" data-bs-title="Extensões: .png, .jpg, .jpeg, .svg | Máximo: 10 MB">
+                                <i class="bi bi-info-circle-fill"></i>
+                            </span>
+                        </div>
+
+                        <input type="file" name="anexo" class="form-control" multiple data-file-bite="10485760" data-file-extensions=".png, .jpg, .jpeg, .svg" onchange="checkAttachment(this)" />
+                    </label>
+
+                    <div>
+                        <div>&nbsp;</div>
+                        <button type="submit" class="btn btn-primary">Ok</button>
+                    </div>
+                </div>
+
+                <div class="d-flex aling-items-center gap-2">
+                    <label>
+                        <div class="d-flex aling-items-center gap-2">
+                            <span>Anexar Arquivo:</span>
+                            <span data-bs-toggle="tooltip" data-bs-title="Extensões: .png, .jpg, .jpeg, .svg | Máximo: 10 MB">
+                                <i class="bi bi-info-circle-fill"></i>
+                            </span>
+                        </div>
+
+                        <input type="file" name="anexo" class="form-control" multiple data-file-bite="10485760" data-file-extensions=".png, .jpg, .jpeg, .svg" onchange="checkAttachment(this)" />
+                    </label>
+
+                    <div>
+                        <div>&nbsp;</div>
+                        <button type="submit" class="btn btn-primary">Ok</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</Layout>
+
+<script is:inline>
+    function checkAttachment(inputFile) {
+        const input = $(inputFile);
+        const bite = parseInt(input.data('file-bite'));
+        const extensionsText = input.data('file-extensions');
+        const extensions = extensionsText ? new RegExp(`(${extensionsText.split(', ').join('|')})$`, 'i') : null;
+
+        if (input[0].files && input[0].files.length > 0) {
+            for (let file of input[0].files) {
+                const fileName = file.name;
+
+                if (extensions && !extensions.test(fileName)) {
+                    alert(`"${fileName}" está fora das extensões permitidas: ${extensionsText}`);
+                    input.val('');
+                    return false;
+                }
+
+                if (bite && file.size > bite) {
+                    const maxMB = (bite / (1024 * 1024)).toFixed(0).replace('.', ',');
+                    alert(`"${fileName}" excede o tamanho máximo: ${maxMB} MB`);
+                    input.val('');
+                    return false;
+                }
+            }
+        }
+    }
+</script>
