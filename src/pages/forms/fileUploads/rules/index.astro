@@ -17,7 +17,7 @@ import Layout from '@layouts/LayoutSidebar.astro';
                             </span>
                         </div>
 
-                        <input type="file" name="anexo" class="form-control" multiple data-file-bite="10485760" data-file-extensions=".png, .jpg, .jpeg, .svg" onchange="checkAttachment(this)" />
+                        <input type="file" name="anexo" data-inputfile="rules" class="form-control" multiple data-file-bite="10485760" data-file-extensions=".png, .jpg, .jpeg, .svg" />
                     </label>
 
                     <div>
@@ -25,6 +25,8 @@ import Layout from '@layouts/LayoutSidebar.astro';
                         <button type="submit" class="btn btn-primary">Ok</button>
                     </div>
                 </div>
+
+                <hr />
 
                 <div class="d-flex aling-items-center gap-2">
                     <label>
@@ -35,7 +37,7 @@ import Layout from '@layouts/LayoutSidebar.astro';
                             </span>
                         </div>
 
-                        <input type="file" name="anexo" class="form-control" multiple data-file-bite="10485760" data-file-extensions=".png, .jpg, .jpeg, .svg" onchange="checkAttachment(this)" />
+                        <input type="file" name="anexo" class="form-control" multiple data-file-bite="10485760" data-file-extensions=".png, .jpg, .jpeg, .svg" onchange="validateFileInput(this)" />
                     </label>
 
                     <div>
@@ -49,29 +51,40 @@ import Layout from '@layouts/LayoutSidebar.astro';
 </Layout>
 
 <script is:inline>
-    function checkAttachment(inputFile) {
-        const input = $(inputFile);
-        const bite = parseInt(input.data('file-bite'));
-        const extensionsText = input.data('file-extensions');
+    function validateFileInput(inputFile) {
+        const input = inputFile;
+        const bite = parseInt(input.dataset.fileBite, 10);
+        const extensionsText = input.dataset.fileExtensions || '';
         const extensions = extensionsText ? new RegExp(`(${extensionsText.split(', ').join('|')})$`, 'i') : null;
 
-        if (input[0].files && input[0].files.length > 0) {
-            for (let file of input[0].files) {
+        if (input.files && input.files.length > 0) {
+            for (const file of input.files) {
                 const fileName = file.name;
 
                 if (extensions && !extensions.test(fileName)) {
-                    alert(`"${fileName}" está fora das extensões permitidas: ${extensionsText}`);
-                    input.val('');
+                    alert(`Fora das extensões permitidas: ${extensionsText}`);
+                    input.value = '';
                     return false;
                 }
 
                 if (bite && file.size > bite) {
                     const maxMB = (bite / (1024 * 1024)).toFixed(0).replace('.', ',');
-                    alert(`"${fileName}" excede o tamanho máximo: ${maxMB} MB`);
-                    input.val('');
+                    alert(`Excede o tamanho máximo de ${maxMB} MB`);
+                    input.value = '';
                     return false;
                 }
             }
         }
     }
+
+    // Autoativação em todos com data-inputfile="rules"
+    window.addEventListener('load', () => {
+        const inputs = document.querySelectorAll('[data-inputfile="rules"]');
+
+        inputs.forEach((input) => {
+            input.addEventListener('change', function () {
+                validateFileInput(this);
+            });
+        });
+    });
 </script>
