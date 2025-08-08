@@ -75,11 +75,17 @@ if (contentSidebarApp) {
     const psSidebar = new PerfectScrollbar('.contentSidebarApp');
 
     // Adiciona listener de 'touchstart' como passive
-    contentSidebarApp.addEventListener('touchstart', function (event) {}, { passive: true });
+    contentSidebarApp.addEventListener('touchstart', function (event) {}, {
+        passive: true,
+    });
 
     // Adiciona listener de 'wheel' e 'touchmove' como passive para evitar bloqueio de scroll
-    contentSidebarApp.addEventListener('wheel', function (event) {}, { passive: true });
-    contentSidebarApp.addEventListener('touchmove', function (event) {}, { passive: true });
+    contentSidebarApp.addEventListener('wheel', function (event) {}, {
+        passive: true,
+    });
+    contentSidebarApp.addEventListener('touchmove', function (event) {}, {
+        passive: true,
+    });
 
     // Atualiza o PerfectScrollbar se houver mudanÃ§as no conteÃºdo
     //psSidebar.update();

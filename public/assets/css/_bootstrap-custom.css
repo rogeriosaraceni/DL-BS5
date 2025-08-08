@@ -60,7 +60,7 @@ a {
 }
 .breadcrumb { background-color: transparent;}
 .breadcrumb-item a { color: #6c757d;}
-.breadcrumb-item.active { color: var(--blue-app-500);}
+.breadcrumb-item.active { color: var(--app-theme) }
 
 /* --------------------------------------------------------------------
 btn

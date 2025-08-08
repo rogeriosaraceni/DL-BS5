@@ -1,5 +1,5 @@
 .bootstrap-select.show-tick .dropdown-menu li a:before {
-    content: "";
+    content: '';
     position: absolute;
     display: inline-block;
     right: 15px;
@@ -15,8 +15,7 @@
     margin-left: -14px;
 }
 
-
-.bootstrap-select>.dropdown-toggle {
+.bootstrap-select > .dropdown-toggle {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -25,7 +24,7 @@
     border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: var(--bs-border-radius);
 }
-.bootstrap-select> .dropdown-toggle::after {
+.bootstrap-select > .dropdown-toggle::after {
     width: 7px;
     height: 7px;
     border-right: 0;

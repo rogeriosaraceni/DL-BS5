@@ -12,12 +12,23 @@ import Layout from '@layouts/LayoutSidebar.astro';
                     <label>
                         <div class="d-flex aling-items-center gap-2">
                             <span>Anexar Arquivo:</span>
-                            <span data-bs-toggle="tooltip" data-bs-title="Extensões: .png, .jpg, .jpeg, .svg | Máximo: 10 MB">
+                            <span
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Extensões: .png, .jpg, .jpeg, .svg | Máximo: 10 MB"
+                            >
                                 <i class="bi bi-info-circle-fill"></i>
                             </span>
                         </div>
 
-                        <input type="file" name="anexo" data-inputfile="rules" class="form-control" multiple data-file-bite="10485760" data-file-extensions=".png, .jpg, .jpeg, .svg" />
+                        <input
+                            type="file"
+                            name="anexo"
+                            data-inputfile="rules"
+                            class="form-control"
+                            multiple
+                            data-file-bite="10485760"
+                            data-file-extensions=".png, .jpg, .jpeg, .svg"
+                        />
                     </label>
 
                     <div>
@@ -32,12 +43,23 @@ import Layout from '@layouts/LayoutSidebar.astro';
                     <label>
                         <div class="d-flex aling-items-center gap-2">
                             <span>Anexar Arquivo:</span>
-                            <span data-bs-toggle="tooltip" data-bs-title="Extensões: .png, .jpg, .jpeg, .svg | Máximo: 10 MB">
+                            <span
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Extensões: .png, .jpg, .jpeg, .svg | Máximo: 10 MB"
+                            >
                                 <i class="bi bi-info-circle-fill"></i>
                             </span>
                         </div>
 
-                        <input type="file" name="anexo" class="form-control" multiple data-file-bite="10485760" data-file-extensions=".png, .jpg, .jpeg, .svg" onchange="validateFileInput(this)" />
+                        <input
+                            type="file"
+                            name="anexo"
+                            class="form-control"
+                            multiple
+                            data-file-bite="10485760"
+                            data-file-extensions=".png, .jpg, .jpeg, .svg"
+                            onchange="validateFileInput(this)"
+                        />
                     </label>
 
                     <div>

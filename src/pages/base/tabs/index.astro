@@ -1,0 +1,17 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+import PageTitle from '@components/ui/PageTitle.astro';
+import ContentTab from './_content-tab.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Base UI' }, { label: 'TabFlat' }];
+---
+
+<Layout>
+    <PageTitle title="TabFlat" breadcrumbs={breadcrumbs} />
+
+    <div class="card">
+        <div class="card-body">
+            <ContentTab />
+        </div>
+    </div>
+</Layout>
