@@ -1,4 +1,5 @@
 ---
+import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
 import ContentCode from './_content-code.astro';
 ---
 
@@ -33,24 +34,13 @@ import ContentCode from './_content-code.astro';
 <div class="tab-content border-0">
     <div class="tab-pane show active" id="tab-preview">1</div>
     <div class="tab-pane code" id="tab-code">
-        <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn btn-outline-success btn-clipboard" data-clipboard-target="#code">
-                <i class="bi bi-copy"></i> Copy
-            </button>
+        <div class="d-flex mb-3">
+            <BtnCopyCode id="#code" />
         </div>
 
         <ContentCode />
     </div>
 </div>
-
-<script is:inline>
-    new ClipboardJS('.btn-clipboard').on('success', function (e) {
-        e.trigger.innerHTML = '<i class="bi bi-check2"></i> Copied!';
-        setTimeout(() => {
-            e.trigger.innerHTML = '<i class="bi bi-copy"></i> Copy';
-        }, 1500);
-    });
-</script>
 
 <style>
     .nav-tabs.nav-flat {
