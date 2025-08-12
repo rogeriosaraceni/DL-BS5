@@ -1,0 +1,16 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+import PageTitle from '@components/ui/PageTitle.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Vendors' }, { label: 'Datatables' }];
+---
+
+<Layout>
+    <PageTitle title="Datatables" breadcrumbs={breadcrumbs} />
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Datatables</h5>
+        </div>
+    </div>
+</Layout>
