@@ -9,6 +9,7 @@
 * - Shadows
 * - Scrollbar
 * - table-asp
+* - pre e code
 *
 * //////////////////////////////////////////////////////////////////// */
 
@@ -91,4 +92,24 @@ a { transition: all 0.2s;}
    border-radius: 10px;
    border: 1px solid transparent;
    background-color: var(--scrollbar-bg-track);
+}
+
+/* --------------------------------------------------------------------
+* - pre e code
+* -------------------------------------------------------------------- */
+pre{
+   padding: 1rem;
+   border-radius: var(--bs-border-radius);
+}
+
+:root[data-bs-theme='light'] {
+   pre{
+      background-color: #f8f6f6;
+   }
+}
+:root[data-bs-theme='dark'] {
+   pre{
+      color: greenyellow;
+      background-color: #111;
+   }
 }

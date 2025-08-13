@@ -1,0 +1,17 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+import PageTitle from '@components/ui/PageTitle.astro';
+import ContentTab from './_content-tab.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Plugins' }, { label: 'Select Icons' }];
+---
+
+<Layout>
+    <PageTitle title="Select Icons" breadcrumbs={breadcrumbs} />
+
+    <div class="card">
+        <div class="card-body">
+            <ContentTab />
+        </div>
+    </div>
+</Layout>
