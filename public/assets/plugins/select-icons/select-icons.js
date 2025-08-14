@@ -1,74 +1,78 @@
-async function selectIcons() {
-    try {
-        const response = await fetch('/assets/plugins/select-icons/select-icons.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+function selectIcons(el, options = {}) {
+    const container = typeof el === 'string' ? document.querySelector(el) : el;
+    if (!container) return;
+
+    const settings = Object.assign(
+        {
+            urlJson: '/assets/plugins/select-icons/select-icons.json',
+            displayShow: 'd-flex',
+            inputSelector: '[data-selectInputIcon="input_icon"]',
+        },
+        options,
+    );
+
+    const button = container.querySelector('[data-selectIcons="button"]');
+    const content = container.querySelector('[data-selectIcons="content"]');
+    let eventsConfigured = false;
+
+    async function init() {
+        try {
+            const response = await fetch(settings.urlJson);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            const data = await response.json();
+            renderIcons(data);
+
+            if (!eventsConfigured) {
+                bindEvents();
+                eventsConfigured = true;
+            }
+        } catch (error) {
+            console.error('Error fetching the icons:', error);
         }
+    }
 
-        const data = await response.json();
-
-        const selectIconContent = document.querySelector('[data-selectIcons="content"]');
-        const selectIconButton = document.querySelector('[data-selectIcons="button"]');
-        const displayShow = 'd-flex';
-
-        selectIconContent.innerHTML = '';
-
-        // monta select
+    function renderIcons(data) {
         const iconsHtml = data
             .map(
                 ({ icon }) => `
-                    <div class="item" data-content="icon" data-value="${icon}" data-icon="${icon}">
-                        <i class="${icon}"></i>
-                    </div>
-                `,
+            <div class="item" data-content="icon" data-value="${icon}" data-icon="${icon}">
+                <i class="${icon}"></i>
+            </div>
+        `,
             )
             .join('');
-
-        selectIconContent.innerHTML = iconsHtml;
-
-        // Configurar eventos
-
-        configureOpenSelect(selectIconButton, selectIconContent, displayShow);
-        configureIconSelection(selectIconContent, selectIconButton, displayShow);
-        configureCloseSelect(selectIconButton, selectIconContent, displayShow);
-    } catch (error) {
-        console.error('Error fetching the icons:', error);
+        content.innerHTML = iconsHtml;
     }
 
-    // abre select
-    function configureOpenSelect(selectIconButton, selectIconContent, displayShow) {
-        selectIconButton.addEventListener('click', (event) => {
-            event.stopPropagation();
-            selectIconContent.classList.toggle(displayShow);
+    function bindEvents() {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            content.classList.toggle(settings.displayShow);
         });
-    }
 
-    // mostra o ícone selecionado
-    function configureIconSelection(selectIconContent, selectIconButton, displayShow) {
-        selectIconContent.addEventListener('click', (event) => {
-            const item = event.target.closest('[data-content="icon"]');
+        content.addEventListener('click', (e) => {
+            const item = e.target.closest('[data-content="icon"]');
             if (item) {
                 const iconClass = item.getAttribute('data-icon');
                 const selectedValue = item.getAttribute('data-value');
-                selectIconButton.innerHTML = `<i class="${iconClass}"></i>`;
-                selectIconContent.classList.remove(displayShow);
 
-                const selectInput = document.querySelector('[data-selectInputIcon="input_icon"]');
-                selectInput.value = iconClass;
-                console.log(iconClass);
-                console.log(selectedValue);
+                button.innerHTML = `<i class="${iconClass}"></i>`;
+                content.classList.remove(settings.displayShow);
+
+                const input = container.querySelector(settings.inputSelector);
+                if (input) input.value = iconClass;
+
+                console.log(iconClass, selectedValue);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!button.contains(e.target) && !content.contains(e.target)) {
+                content.classList.remove(settings.displayShow);
             }
         });
     }
 
-    // fecha select clicando fora dele
-    function configureCloseSelect(selectIconButton, selectIconContent, displayShow) {
-        document.addEventListener('click', (event) => {
-            if (!selectIconButton.contains(event.target) && !selectIconContent.contains(event.target)) {
-                selectIconContent.classList.remove(displayShow);
-            }
-        });
-    }
+    init();
 }
-
-selectIcons();
