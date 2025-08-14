@@ -1,9 +1,10 @@
 ---
 import Layout from '@layouts/LayoutSidebar.astro';
 import PageTitle from '@components/ui/PageTitle.astro';
+import ContentInfo from './_content-info.astro';
 import ContentTab from './_content-tab.astro';
 
-const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Plugins' }, { label: 'Select Icons' }];
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'My Plugins' }, { label: 'Select Icons' }];
 ---
 
 <Layout>
@@ -11,7 +12,15 @@ const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Plugins' }, { label
 
     <div class="card">
         <div class="card-body">
-            <ContentTab />
+            <section class="row">
+                <div class="col-lg-7">
+                    <ContentInfo />
+                </div>
+
+                <div class="col-lg-5">
+                    <ContentTab />
+                </div>
+            </section>
         </div>
     </div>
 </Layout>
