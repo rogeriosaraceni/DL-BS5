@@ -1,5 +1,5 @@
-function selectIcons(el, options = {}) {
-    const container = typeof el === 'string' ? document.querySelector(el) : el;
+function selectIcons(selector, options = {}) {
+    const container = document.querySelector(selector);
     if (!container) return;
 
     const settings = Object.assign(
@@ -46,11 +46,13 @@ function selectIcons(el, options = {}) {
     }
 
     function bindEvents() {
+        // Abrir select
         button.addEventListener('click', (e) => {
             e.stopPropagation();
             content.classList.toggle(settings.displayShow);
         });
 
+        // Selecionar ícone
         content.addEventListener('click', (e) => {
             const item = e.target.closest('[data-content="icon"]');
             if (item) {
@@ -60,13 +62,14 @@ function selectIcons(el, options = {}) {
                 button.innerHTML = `<i class="${iconClass}"></i>`;
                 content.classList.remove(settings.displayShow);
 
-                const input = container.querySelector(settings.inputSelector);
+                const input = document.querySelector(settings.inputSelector);
                 if (input) input.value = iconClass;
 
                 console.log(iconClass, selectedValue);
             }
         });
 
+        // Fechar ao clicar fora
         document.addEventListener('click', (e) => {
             if (!button.contains(e.target) && !content.contains(e.target)) {
                 content.classList.remove(settings.displayShow);
