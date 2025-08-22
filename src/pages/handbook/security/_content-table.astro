@@ -1,0 +1,182 @@
+<section class="mb-5">
+    <h1 class="h4 mb-2">OWASP Top 10 × <span class="text-primary">Front-end</span></h1>
+    <p class="text-muted mb-2">
+        Quadro comparativo entre as categorias do OWASP Top 10 (2021) e os impactos práticos no front-end.
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width:60px">#</th>
+                    <th>Categoria</th>
+                    <th>Impacto no Front-end</th>
+                    <th>Boas Práticas</th>
+                    <th>Ferramentas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A01</td>
+                    <td><strong>Broken Access Control</strong></td>
+                    <td>Ocultar botões/rotas no DOM <em>não</em> é controle de acesso.</td>
+                    <td>Validar sempre no servidor; usar guards apenas para UX.</td>
+                    <td>
+                        <a href="https://portswigger.net/burp" target="_blank">Burp Suite</a>,
+                        <a href="https://www.zaproxy.org/" target="_blank">ZAP</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A02</td>
+                    <td><strong>Cryptographic Failures</strong></td>
+                    <td
+                        >Uso de HTTP, cookies sem <code>Secure</code>/<code>HttpOnly</code>, dados sensíveis em <code
+                            >localStorage</code
+                        >.</td
+                    >
+                    <td>Usar HTTPS; cookies seguros; nunca expor segredos no bundle.</td>
+                    <td>
+                        <a href="https://www.ssllabs.com/ssltest/" target="_blank">SSL Labs</a>,
+                        <a href="https://testssl.sh/" target="_blank">testssl.sh</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A03</td>
+                    <td><strong>Injection</strong></td>
+                    <td>DOM-XSS via <code>innerHTML</code>, <code>eval</code>, template injection.</td>
+                    <td>Evitar APIs perigosas; usar bindings seguros do framework.</td>
+                    <td>
+                        <a href="https://portswigger.net/burp" target="_blank">Burp Suite</a>,
+                        <a href="https://www.zaproxy.org/" target="_blank">ZAP</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A04</td>
+                    <td><strong>Insecure Design</strong></td>
+                    <td>Fluxos frágeis (reset de senha fraco, parâmetros confiados no FE).</td>
+                    <td>Modelagem de ameaças; validações server-side.</td>
+                    <td>
+                        <a href="https://owasp.org/www-project-threat-dragon/" target="_blank">OWASP Threat Dragon</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A05</td>
+                    <td><strong>Security Misconfiguration</strong></td>
+                    <td>CORS aberto, ausência de CSP/Frame-Options.</td>
+                    <td>Restringir CORS; configurar CSP e frame-ancestors.</td>
+                    <td>
+                        <a href="https://securityheaders.com/" target="_blank">Security Headers</a>,
+                        <a href="https://observatory.mozilla.org/" target="_blank">Mozilla Observatory</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A06</td>
+                    <td><strong>Vulnerable & Outdated Components</strong></td>
+                    <td>Bibliotecas JS vulneráveis; pacotes NPM sem atualização.</td>
+                    <td>Usar <code>npm audit</code>; aplicar SRI em scripts externos.</td>
+                    <td>
+                        <a href="https://snyk.io/" target="_blank">Snyk</a>,
+                        <a href="https://github.com/RetireJS/retire.js" target="_blank">Retire.js</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A07</td>
+                    <td><strong>Identification & Authentication Failures</strong></td>
+                    <td>Tokens em <code>localStorage</code>; sessão sem expiração.</td>
+                    <td>Preferir cookies HttpOnly + SameSite; refresh seguro.</td>
+                    <td>
+                        <a href="https://auth0.com/" target="_blank">Auth0 Analyzer</a>,
+                        <a href="https://curity.io/" target="_blank">Curity Tools</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A08</td>
+                    <td><strong>Software & Data Integrity Failures</strong></td>
+                    <td>Supply chain, pacotes maliciosos, import sem integridade.</td>
+                    <td>Pipeline reprodutível; usar lockfiles; Subresource Integrity.</td>
+                    <td>
+                        <a href="https://snyk.io/" target="_blank">Snyk</a>,
+                        <a href="https://owasp.org/www-project-dependency-check/" target="_blank"
+                            >OWASP Dependency-Check</a
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td>A09</td>
+                    <td><strong>Security Logging & Monitoring Failures</strong></td>
+                    <td>Falta de telemetria no FE; erros verbosos.</td>
+                    <td>Registrar tentativas críticas no back-end; mascarar PII.</td>
+                    <td>
+                        <a href="https://sentry.io/" target="_blank">Sentry</a>,
+                        <a href="https://www.elastic.co/observability" target="_blank">Elastic Observability</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A10</td>
+                    <td><strong>SSRF</strong></td>
+                    <td>Impacto direto baixo; mas aceitar URLs de usuário pode expor server.</td>
+                    <td>Validar URLs no back-end; usar allowlist; nunca proxyar cegamente.</td>
+                    <td>
+                        <a href="https://portswigger.net/burp" target="_blank">Burp Suite</a>,
+                        <a href="https://www.zaproxy.org/" target="_blank">ZAP</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="text-muted small">
+        Fonte: OWASP Top 10 (2021) · <a href="https://owasp.org/Top10/" target="_blank">owasp.org/Top10</a>
+    </p>
+</section>
+
+<section class="mb-5">
+    <h2 class="mb-2">Ferramentas Front-end</h2>
+
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th style="width: 20%;">Categoria</th>
+                <th style="width: 25%;">Ferramenta</th>
+                <th style="width: 55%;">Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ferramentas de Teste -->
+            <tr>
+                <td rowspan="2" class="fw-bold">Teste de Segurança</td>
+                <td>
+                    <a href="https://portswigger.net/burp" target="_blank">Burp Suite</a>
+                </td>
+                <td
+                    >Proxy para análise de tráfego HTTP, interceptação de requests e testes de vulnerabilidades (como
+                    XSS, CSRF e SQL Injection).</td
+                >
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.zaproxy.org/" target="_blank">OWASP ZAP</a>
+                </td>
+                <td>Scanner de segurança open-source que ajuda a identificar falhas comuns em aplicações web.</td>
+            </tr>
+
+            <!-- Ferramentas de Mitigação -->
+            <tr>
+                <td rowspan="2" class="fw-bold">Mitigação no Front-end</td>
+                <td>
+                    <a href="https://github.com/cure53/DOMPurify" target="_blank">DOMPurify</a>
+                </td>
+                <td>Biblioteca JavaScript para sanitização de HTML e prevenção de XSS ao tratar dados de entrada.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://helmetjs.github.io/" target="_blank">Helmet</a>
+                </td>
+                <td
+                    >Middleware para definir cabeçalhos HTTP de segurança, reduzindo riscos de ataques (ideal junto com
+                    apps em Node.js).</td
+                >
+            </tr>
+        </tbody>
+    </table>
+</section>

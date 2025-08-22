@@ -1,0 +1,100 @@
+---
+import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
+import ContentCode from './_content-code.astro';
+---
+
+<div class="d-flex justify-content-center">
+    <ul class="nav segmentedButton-wrapper">
+        <a
+            href="#tab-preview"
+            class="segmentedButton active"
+            data-bs-toggle="tab"
+            role="tab"
+            aria-controls="nav-preview"
+            aria-selected="true"
+        >
+            <span class="name">Preview</span>
+        </a>
+
+        <a
+            href="#tab-code"
+            class="segmentedButton"
+            data-bs-toggle="tab"
+            role="tab"
+            aria-controls="nav-code"
+            aria-selected="false"
+        >
+            <span class="name">Code</span>
+        </a>
+    </ul>
+</div>
+
+<div class="tab-content border-0">
+    <div class="tab-pane show active" id="tab-preview">1</div>
+    <div class="tab-pane code" id="tab-code">
+        <div class="d-flex mb-3">
+            <BtnCopyCode id="#code" />
+        </div>
+
+        <ContentCode />
+    </div>
+</div>
+
+<style>
+    .segmentedButton-wrapper {
+        display: flex;
+        border-radius: 2rem;
+        overflow: hidden;
+        width: fit-content;
+        background-color: #e6e6e6;
+    }
+    .segmentedButton {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: -0.5rem;
+        padding: 0.5rem 2rem;
+        font-size: 1rem;
+        color: #777;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 2rem;
+        text-decoration: none;
+    }
+    .segmentedButton:before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transform: scaleX(0.32);
+        transition-duration: 0.2s;
+        transition-property: transform, opacity;
+        transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+        border-radius: 40px;
+        background-color: transparent;
+        content: '';
+    }
+
+    .segmentedButton.active {
+        color: #fff !important;
+    }
+    .segmentedButton.active:before {
+        opacity: 1;
+        transition-duration: 0.2s;
+        transition-property: transform, opacity;
+        transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+        transform: scaleX(1);
+        background-color: #1ab394;
+    }
+
+    .segmentedButton:hover,
+    .segmentedButton.active:hover {
+        color: #444 !important;
+    }
+
+    .segmentedButton .name {
+        z-index: 1;
+    }
+</style>
