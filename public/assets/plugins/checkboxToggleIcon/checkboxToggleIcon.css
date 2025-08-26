@@ -1,0 +1,33 @@
+.wrapperCheckboxToggleIcon{
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+}
+.wrapperCheckboxToggleIcon .ckeckboxToggle{
+    position: absolute;
+    z-index: -9999;
+    visibility: hidden;
+}
+
+.wrapperCheckboxToggleIcon .btn{
+    padding-bottom: 0.35rem;
+    color: #bbb;
+    background-color: #efefef;
+}
+.wrapperCheckboxToggleIcon .btn:hover{
+    color: #aaa;
+    background-color: #dfdfdf;
+}
+.wrapperCheckboxToggleIcon .btn.active{
+    color: #fff;
+}
+
+.wrapperCheckboxToggleIcon .btn.ok.active{
+    background-color: #1abc9c;;
+}
+.wrapperCheckboxToggleIcon .btn.nok.active{
+    background-color: #f65f6e;
+}
+.wrapperCheckboxToggleIcon .btn.na.active{
+    background-color: #888;
+}
