@@ -2,14 +2,13 @@
 import Layout from '@layouts/LayoutSidebar.astro';
 import PageTitle from '@components/ui/PageTitle.astro';
 import ContentInfo from './_content-info.astro';
-import ContentPreview from './_content-preview.astro';
 import ContentCode from './_content-code.astro';
 
-const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'My Plugins' }, { label: 'Checkbox Toggle Icon' }];
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Bootstrap Custom' }, { label: 'TabFlat' }];
 ---
 
 <Layout>
-    <PageTitle title="Checkbox Toggle Icon" breadcrumbs={breadcrumbs} />
+    <PageTitle title="TabFlat" breadcrumbs={breadcrumbs} />
 
     <div class="card">
         <div class="card-body">
@@ -44,10 +43,7 @@ const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'My Plugins' }, { la
             </ul>
 
             <div class="tab-content border-0">
-                <div class="tab-pane show active" id="tab-preview">
-                    <ContentPreview />
-                </div>
-
+                <div class="tab-pane show active" id="tab-preview">1</div>
                 <div class="tab-pane code" id="tab-code">
                     <ContentCode />
                 </div>

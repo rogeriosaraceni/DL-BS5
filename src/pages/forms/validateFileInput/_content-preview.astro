@@ -1,0 +1,33 @@
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="d-flex aling-items-center gap-2">
+        <label>
+            <div class="d-flex aling-items-center gap-2">
+                <span>Anexar Arquivo:</span>
+                <span
+                    data-bs-toggle="tooltip"
+                    data-bs-title="Extensões: .png, .jpg, .jpeg, .svg e .heic | Máximo: 10 MB"
+                >
+                    <i class="bi bi-info-circle-fill"></i>
+                </span>
+            </div>
+
+            <input
+                type="file"
+                name="anexo"
+                multiple
+                required
+                class="form-control"
+                data-file-bite="10485760"
+                data-file-extensions=".png, .jpg, .jpeg, .svg"
+                onchange="validateFileInput(this)"
+            />
+        </label>
+
+        <div>
+            <div>&nbsp;</div>
+            <button type="submit" class="btn btn-primary">Ok</button>
+        </div>
+    </div>
+</form>
+
+<script is:inline src="/assets/plugins/validateFileInput.js"></script>

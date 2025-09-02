@@ -1,0 +1,36 @@
+---
+import ContentCode from './_content-code.astro';
+---
+
+<div class="d-flex justify-content-center">
+    <ul class="nav segmentedButton-wrapper">
+        <a
+            href="#tab-preview"
+            class="segmentedButton active"
+            data-bs-toggle="tab"
+            role="tab"
+            aria-controls="nav-preview"
+            aria-selected="true"
+        >
+            <span class="name">Preview</span>
+        </a>
+
+        <a
+            href="#tab-code"
+            class="segmentedButton"
+            data-bs-toggle="tab"
+            role="tab"
+            aria-controls="nav-code"
+            aria-selected="false"
+        >
+            <span class="name">Code</span>
+        </a>
+    </ul>
+</div>
+
+<div class="tab-content border-0">
+    <div class="tab-pane show active" id="tab-preview">1</div>
+    <div class="tab-pane code" id="tab-code">
+        <ContentCode />
+    </div>
+</div>

@@ -1,19 +1,25 @@
 ---
 import Layout from '@layouts/LayoutSidebar.astro';
 import PageTitle from '@components/ui/PageTitle.astro';
-import ContentInfo from './_content-info.astro';
 import ContentPreview from './_content-preview.astro';
 import ContentCode from './_content-code.astro';
 
-const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'My Plugins' }, { label: 'Checkbox Toggle Icon' }];
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Default' }, { label: 'DefaultName' }];
 ---
 
 <Layout>
-    <PageTitle title="Checkbox Toggle Icon" breadcrumbs={breadcrumbs} />
+    <PageTitle title="DefaultName" breadcrumbs={breadcrumbs} />
 
     <div class="card">
         <div class="card-body">
-            <ContentInfo />
+            <ul class="ps-3">
+                <li>Versão: 1.0.0</li>
+                <li>Data de criação: 02/09/2025</li>
+                <li>Data de update: 02/09/2025</li>
+                <li>Autor: Rogério Saraceni</li>
+            </ul>
+
+            <p></p>
 
             <ul class="nav nav-tabs nav-flat mb-3">
                 <li class="nav-item" role="presentation">

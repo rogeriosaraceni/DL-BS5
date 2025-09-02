@@ -7,10 +7,12 @@
 * - container-fluid
 * - modal
 * - nav-tabs
+* - nav-tabs-flat
 * - page-item .active/disabled
 * - tab-content
 * - titles - h1, h2, h3, h4, h5, h6
 * - hr
+* - segmentedButton
 //////////////////////////////////////////////////////////////////// */
 
 
@@ -255,14 +257,54 @@ btn
 	max-width: 80%!important;
 }
 
-
-
 /* --------------------------------------------------------------------
 * - nav-tabs
 ---------------------------------------------------------------------- */
 .nav-tabs .nav-link{
     transition: all 0.3s;
 }
+
+/* --------------------------------------------------------------------
+* - nav-tabs-flat
+---------------------------------------------------------------------- */
+.nav-tabs.nav-flat {
+    --bs-nav-tabs-border-width: 2px;
+}
+.nav-tabs.nav-flat li a {
+    border: 0;
+    padding: 0.625rem 1.25rem;
+}
+
+.nav-tabs.nav-flat .nav-item .nav-link {
+    position: relative;
+    color: inherit;
+    transition: all 0.2s;
+}
+.nav-tabs.nav-flat .nav-item .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+}
+.nav-tabs.nav-flat .nav-item .nav-link.active::before {
+    border-bottom: 2px solid var(--app-theme);
+}
+.nav-tabs.nav-flat .nav-item .nav-link:hover {
+    color: var(--app-theme);
+}
+
+.nav-tabs.nav-flat .nav-link.active {
+    background-color: transparent;
+}
+.nav-tabs.nav-flat .nav-item .nav-link.active:hover {
+    color: inherit;
+}
+
 
 /* --------------------------------------------------------------------
 * - page-item .active/disabled
@@ -298,3 +340,63 @@ btn
 * - hr
 ---------------------------------------------------------------------- */
 hr { opacity: 0.12;}
+
+/* --------------------------------------------------------------------
+* - segmentedButton
+---------------------------------------------------------------------- */
+.segmentedButton-wrapper {
+    display: flex;
+    border-radius: 2rem;
+    overflow: hidden;
+    width: fit-content;
+    background-color: #e6e6e6;
+}
+.segmentedButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: -0.5rem;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    color: #777;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 2rem;
+    text-decoration: none;
+}
+.segmentedButton:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scaleX(0.32);
+    transition-duration: 0.2s;
+    transition-property: transform, opacity;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+    border-radius: 40px;
+    background-color: transparent;
+    content: '';
+}
+
+.segmentedButton.active {
+    color: #fff !important;
+}
+.segmentedButton.active:before {
+    opacity: 1;
+    transition-duration: 0.2s;
+    transition-property: transform, opacity;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+    transform: scaleX(1);
+    background-color: #1ab394;
+}
+
+.segmentedButton:hover,
+.segmentedButton.active:hover {
+    color: #444 !important;
+}
+
+.segmentedButton .name {
+    z-index: 1;
+}
