@@ -1,5 +1,26 @@
 ---
 import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
+
+const codeSnippet = `
+<script>
+    $(document).ready(function () {
+        $.magnificPopup.open({
+            items: {
+                src: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // URL do iframe
+            },
+            type: 'iframe',
+            iframe: {
+                markup:
+                    '<style>.mfp-iframe-holder .mfp-content {width:100%;max-width:800px;height:420px;}</style>' +
+                    '<div class="mfp-iframe-scaler" >' +
+                    '<div class="mfp-close"></div>' +
+                    '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
+                    '	</div></div>',
+            },
+        });
+    });
+</script>
+`;
 ---
 
 <div class="card">
@@ -60,6 +81,10 @@ import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
                 <div class="d-flex mb-3">
                     <BtnCopyCode id="#code1" />
                 </div>
+
+                <pre>
+                    <code class="language-javascript" id="code1">{codeSnippet}</code>
+                </pre>
             </div>
         </div>
     </div>

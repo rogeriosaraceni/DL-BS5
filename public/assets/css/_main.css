@@ -104,12 +104,11 @@ pre{
 
 :root[data-bs-theme='light'] {
    pre{
-      background-color: #f8f6f6;
+      background-color: #111;
    }
 }
 :root[data-bs-theme='dark'] {
    pre{
-      color: greenyellow;
       background-color: #111;
    }
 }
