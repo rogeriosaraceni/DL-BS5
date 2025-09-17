@@ -1,0 +1,17 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+import PageTitle from '@components/ui/PageTitle.astro';
+import Chart from './_chart.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Vendors' }, { label: 'Amcharts 5' }];
+---
+
+<Layout>
+    <PageTitle title="Amcharts 5" breadcrumbs={breadcrumbs} />
+
+    <div class="card">
+        <div class="card-body">
+            <Chart />
+        </div>
+    </div>
+</Layout>

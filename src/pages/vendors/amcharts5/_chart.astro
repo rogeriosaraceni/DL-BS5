@@ -1,0 +1,57 @@
+---
+import Scripts from './_scripts.astro';
+---
+
+<script is:inline src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script is:inline src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script is:inline src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script is:inline src="https://cdn.amcharts.com/lib/5/plugins/exporting.js"></script>
+
+<form>
+    <section class="wrapper-select-btns">
+        <div class="d-flex flex-wrap gap-2 mb-2" data-wrapper="abertura">
+            <label class="select-size">
+                <span>Tipo Abertura:</span>
+                <select name="tipo_abertura_potencial" class="fc form-select" data-select="abertura" id="filtroSelect">
+                    <option value=""></option>
+                    <option value="op1" selected>Allos</option>
+                    <option value="op2" data-option="regional">Regional</option>
+                    <option value="op3">Cluster Condomínio</option>
+                    <option value="op4">Cluster Posicionamento</option>
+                </select>
+            </label>
+
+            <label class="select-size" data-label="regional" style="display:none">
+                <span>Regional:</span>
+                <select name="regional_potencial" class="fc form-select" data-select="regional">
+                    <option value=""></option>
+                    <option value="1">Regional 1</option>
+                    <option value="2">Regional 2</option>
+                    <option value="3">Regional 3</option>
+                </select>
+            </label>
+        </div>
+    </section>
+</form>
+
+<div class="overflow-x-auto">
+    <div id="chartdiv-zona-potencial-ss" style="width: 100%; height: 400px;"></div>
+</div>
+
+<hr />
+
+<div class="mt-4">
+    <p>
+        Allos: Mostra o primeiro gráfico <strong>ALLOS</strong> / segundo gráfico com as 5 <strong>Regionais</strong> que
+        compoe a ALLOS
+    </p>
+    <p>
+        Regional: Mostra o primeiro gráfico com a <strong>Regional</strong> escolhida / segundo gráfico com os <strong
+            >Shoppings</strong
+        > da regional selecionada
+    </p>
+    <p>Cluster Condomínio: Só mostra o segundo gráfico com os as opções 1,2,3 e 4</p>
+    <p>Cluster Posicionamento: Só mostra o segundo gráfico com as opções 1,2,3 e 4</p>
+</div>
+
+<Scripts />
