@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/assets/plugins/select-icons/select-icons.css" />
+<script is:inline src="/assets/plugins/select-icons/select-icons.js"></script>
+
+<label style="max-width: 420px;">
+    <span>Select Ícone:</span>
+
+    <div class="select-icons-bs-wrapper" id="select-icons-1">
+        <div data-selectIcons="button" class="form-select"></div>
+        <div data-selectIcons="content" class="list-items"></div>
+        <input type="hidden" name="icon" data-selectInputIcon="input_icon" />
+    </div>
+</label>
+
+<script is:inline>
+    $('#select-icons-1').selectIcons();
+</script>

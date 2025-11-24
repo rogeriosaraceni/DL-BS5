@@ -1,0 +1,17 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+import PageTitle from '@components/ui/PageTitle.astro';
+import ContentTable from './_content-table.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Front-end Handbook' }, { label: 'Security' }];
+---
+
+<Layout>
+    <PageTitle title="Security" breadcrumbs={breadcrumbs} />
+
+    <div class="card">
+        <div class="card-body">
+            <ContentTable />
+        </div>
+    </div>
+</Layout>

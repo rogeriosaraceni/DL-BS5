@@ -1,0 +1,41 @@
+---
+import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
+---
+
+<div class="d-flex mb-3">
+    <BtnCopyCode id="#code" />
+</div>
+
+<pre><code class="language-html" id="code">&lt;ul class="nav nav-tabs nav-flat mb-3"&gt;
+    &lt;li class="nav-item" role="presentation"&gt;
+        &lt;a
+            href="#tab-1"
+            class="nav-link active"
+            data-bs-toggle="tab"
+            role="tab"
+            aria-controls="nav-1"
+            aria-selected="true"
+        &gt;
+            Tab1
+        &lt;/a&gt;
+    &lt;/li&gt;
+
+    &lt;li class="nav-item"&gt;
+        &lt;a
+            href="#tab-2"
+            class="nav-link"
+            data-bs-toggle="tab"
+            role="tab"
+            aria-controls="nav-2"
+            aria-selected="false"
+        &gt;
+            Tab2
+        &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content border-0"&gt;
+    &lt;div class="tab-pane show active" id="tab-1"&gt;1...&lt;/div&gt;
+    &lt;div class="tab-pane" id="tab-2"&gt;2...&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>

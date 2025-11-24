@@ -1,0 +1,48 @@
+<style>
+    .bi-sun-moon::before {
+        display: inline-block;
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: 400 !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -0.125em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    html[data-bs-theme='light'] #light-dark-mode .bi-sun-moon::before {
+        content: '\F5A2';
+    }
+    html[data-bs-theme='dark'] #light-dark-mode .bi-sun-moon::before {
+        content: '\F497';
+    }
+</style>
+
+<span class="nav-link cursor-pointer" id="light-dark-mode" data-bs-toggle="tooltip" data-bs-title="Theme">
+    <i class="bi bi-sun-moon fs-5"></i>
+</span>
+
+<script is:inline>
+    (function () {
+        const html = document.documentElement;
+        const btnToggleTheme = document.querySelector('#light-dark-mode');
+        const THEME_KEY = 'theme';
+
+        if (!btnToggleTheme || !html) return;
+
+        // Aplica o tema salvo no localStorage (se houver)
+        const savedTheme = localStorage.getItem(THEME_KEY);
+        if (savedTheme === 'dark' || savedTheme === 'light') {
+            html.setAttribute('data-bs-theme', savedTheme);
+        }
+
+        btnToggleTheme.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem(THEME_KEY, newTheme);
+        });
+    })();
+</script>

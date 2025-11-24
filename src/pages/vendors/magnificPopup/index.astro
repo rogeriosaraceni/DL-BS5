@@ -1,0 +1,19 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+import PageTitle from '@components/ui/PageTitle.astro';
+import ModAberto from './_mod-aberto.astro';
+import ModTravado from './_mod-travado.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Vendors' }, { label: 'Magnific-Popup' }];
+---
+
+<Layout>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.2.0/dist/magnific-popup.min.css" />
+    <script is:inline src="https://cdn.jsdelivr.net/npm/magnific-popup@1.2.0/dist/jquery.magnific-popup.min.js"
+    ></script>
+
+    <PageTitle title="Magnific-Popup" breadcrumbs={breadcrumbs} />
+
+    <ModAberto />
+    <ModTravado />
+</Layout>

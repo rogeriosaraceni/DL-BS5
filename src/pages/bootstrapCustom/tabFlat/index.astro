@@ -1,0 +1,53 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+import PageTitle from '@components/ui/PageTitle.astro';
+import ContentInfo from './_content-info.astro';
+import ContentCode from './_content-code.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Bootstrap Custom' }, { label: 'TabFlat' }];
+---
+
+<Layout>
+    <PageTitle title="TabFlat" breadcrumbs={breadcrumbs} />
+
+    <div class="card">
+        <div class="card-body">
+            <ContentInfo />
+
+            <ul class="nav nav-tabs nav-flat mb-3">
+                <li class="nav-item" role="presentation">
+                    <a
+                        href="#tab-preview"
+                        class="nav-link active"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="nav-preview"
+                        aria-selected="true"
+                    >
+                        Preview
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        href="#tab-code"
+                        class="nav-link"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="nav-code"
+                        aria-selected="false"
+                    >
+                        Code
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content border-0">
+                <div class="tab-pane show active" id="tab-preview">1</div>
+                <div class="tab-pane code" id="tab-code">
+                    <ContentCode />
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,322 @@
+<script is:inline>
+    window.addEventListener('load', function () {
+        // Dados
+        const datasets = {
+            op1: [
+                { filtro: 'Allos', meta: 4.5, zonaPotencial: 5.2, mesYTD: 3.4 },
+                { filtro: 'Regional 1', meta: 3.5, zonaPotencial: 4.2, mesYTD: 3 },
+                { filtro: 'Regional 2', meta: 1.7, zonaPotencial: 3.1, mesYTD: 3 },
+                { filtro: 'Regional 3', meta: 2.8, zonaPotencial: 2.9, mesYTD: 3 },
+                { filtro: 'Regional 4', meta: 2.6, zonaPotencial: 2.3, mesYTD: 3 },
+                { filtro: 'Regional 5', meta: 1.4, zonaPotencial: 2.1, mesYTD: 3 },
+            ],
+            op2: [
+                { filtro: 'Regional', meta: 4.5, zonaPotencial: 5.2, mesYTD: 3.4 },
+                { filtro: 'Shopping 1', meta: 3.5, zonaPotencial: 4.2, mesYTD: 3 },
+                { filtro: 'Shopping 2', meta: 1.7, zonaPotencial: 3.1, mesYTD: 3 },
+                { filtro: 'Shopping 3', meta: 2.8, zonaPotencial: 2.9, mesYTD: 3 },
+                { filtro: 'Shopping 4', meta: 2.6, zonaPotencial: 2.3, mesYTD: 3 },
+                { filtro: 'Shopping 5', meta: 1.4, zonaPotencial: 2.1, mesYTD: 3 },
+                { filtro: 'Shopping 6', meta: 3.5, zonaPotencial: 4.2, mesYTD: 3 },
+                { filtro: 'Shopping 7', meta: 1.7, zonaPotencial: 3.1, mesYTD: 3 },
+                { filtro: 'Shopping 8', meta: 2.8, zonaPotencial: 2.9, mesYTD: 3 },
+                { filtro: 'Shopping 9', meta: 2.6, zonaPotencial: 2.3, mesYTD: 3 },
+            ],
+            op3: [
+                { filtro: '1', meta: 2.2, zonaPotencial: 3.4, mesYTD: 1 },
+                { filtro: '2', meta: 3.1, zonaPotencial: 2.8, mesYTD: 4 },
+                { filtro: '3', meta: 4.5, zonaPotencial: 4.9, mesYTD: 2 },
+                { filtro: '4', meta: 2.8, zonaPotencial: 3.6, mesYTD: 5 },
+            ],
+            op4: [
+                { filtro: '1', meta: 2.2, zonaPotencial: 3.4, mesYTD: 1 },
+                { filtro: '2', meta: 3.1, zonaPotencial: 2.8, mesYTD: 4 },
+                { filtro: '3', meta: 4.5, zonaPotencial: 4.9, mesYTD: 2 },
+                { filtro: '4', meta: 2.8, zonaPotencial: 3.6, mesYTD: 5 },
+            ],
+        };
+
+        // Dataset inicial (vem do select)
+        const selectFilter = document.getElementById('filtroSelect');
+        let data = datasets[selectFilter.value] || datasets.op1;
+
+        // Criação do gráfico
+        const divContainer = document.getElementById('chartdiv-zona-potencial-ss');
+        var root = am5.Root.new(divContainer);
+        root.setThemes([am5themes_Animated.new(root)]);
+        root._logo.set('forceHidden', true);
+
+        var chart = root.container.children.push(
+            am5xy.XYChart.new(root, {
+                paddingLeft: 0,
+                paddingRight: 0,
+                paddingTop: 40,
+                paddingBottom: 0,
+                layout: root.verticalLayout,
+            }),
+        );
+
+        // Title Chart
+        const title = root.container.children.push(
+            am5.Label.new(root, {
+                text: 'Zona Potencial SS',
+                fontSize: 18,
+                fontWeight: 'normal',
+                textAlign: 'center',
+                x: am5.percent(50),
+                centerX: am5.percent(50),
+                paddingTop: 10,
+                paddingBottom: 10,
+            }),
+        );
+
+        // Exportação
+        const exporting = am5plugins_exporting.Exporting.new(root, {
+            menu: am5plugins_exporting.ExportingMenu.new(root, {
+                align: 'left',
+                verticalAlign: 'top',
+            }),
+            dataSource: data,
+            filePrefix: 'aderencia_shoppings',
+            pdfOptions: { includeData: true, addURL: true },
+            htmlOptions: { disabled: true },
+            jsonOptions: { disabled: true },
+            csvOptions: { disabled: true },
+        });
+
+        // Axis x
+        var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 70 });
+        var xAxis = chart.xAxes.push(
+            am5xy.CategoryAxis.new(root, {
+                categoryField: 'filtro',
+                renderer: xRenderer,
+                tooltip: am5.Tooltip.new(root, {
+                    themeTags: ['axis'],
+                    animationDuration: 200,
+                }),
+            }),
+        );
+
+        xAxis.get('renderer').grid.template.set('visible', false);
+
+        // Adicionar linha vertical fixa
+        var verticalLine = chart.plotContainer.children.push(
+            am5.Graphics.new(root, {
+                stroke: am5.color(0xff0000), // Cor vermelha
+                strokeWidth: 2,
+                strokeOpacity: 0.5, // Opacidade para não ofuscar
+                visible: true, // Sempre visível
+                zIndex: 1000, // Garante que fique acima de todos
+            }),
+        );
+
+        // Função para posicionar a linha vertical entre a primeira e a segunda coluna
+        function positionVerticalLine() {
+            console.log('Atualizando posição da linha vertical...');
+            if (xAxis && xAxis.dataItems && xAxis.dataItems.length > 0) {
+                const containerWidth = chart.plotContainer.width(); // Largura real do plotContainer
+                const containerHeight = chart.plotContainer.height();
+                const categoryWidth = containerWidth / xAxis.dataItems.length; // Largura proporcional por categoria
+                const xPosition = categoryWidth; // Posicionar após a primeira categoria
+                console.log('Largura do plotContainer:', containerWidth);
+                console.log('Altura do plotContainer:', containerHeight);
+                console.log('Largura por categoria:', categoryWidth);
+                console.log('Posição X estimada:', xPosition);
+                if (containerHeight > 0 && xPosition < containerWidth) {
+                    verticalLine.setAll({
+                        x: xPosition,
+                        y: 0,
+                        height: containerHeight,
+                        stroke: am5.color(0xff0000),
+                        strokeWidth: 2,
+                        strokeOpacity: 0.5,
+                    });
+                    console.log('Linha posicionada em X:', xPosition, 'Altura:', containerHeight);
+                    chart.plotContainer.markDirty(); // Força a atualização
+                    verticalLine.markDirty(); // Força a renderização da linha
+                    console.log('Filhos do plotContainer:', chart.plotContainer.children.length); // Verifica se a linha está presente
+                } else {
+                    console.log(
+                        'Dimensões inválidas - Altura:',
+                        containerHeight,
+                        'Posição X:',
+                        xPosition,
+                        'Largura:',
+                        containerWidth,
+                    );
+                }
+            } else {
+                console.log('Dados insuficientes no eixo X.');
+            }
+        }
+
+        // Chamar a função de posicionamento quando o gráfico estiver pronto
+        chart.events.on('ready', function () {
+            console.log('Gráfico pronto, posicionando linha...');
+            positionVerticalLine();
+        });
+
+        // Forçar a atualização inicial após um atraso
+        setTimeout(function () {
+            console.log('Tentativa de posicionamento após atraso...');
+            positionVerticalLine();
+        }, 1000); // Atraso de 1000ms
+
+        // Função de retry para garantir posicionamento
+        let retryCount = 0;
+        const maxRetries = 5;
+        function retryPositionVerticalLine() {
+            if (retryCount < maxRetries) {
+                positionVerticalLine();
+                retryCount++;
+                setTimeout(retryPositionVerticalLine, 500); // Tenta novamente a cada 500ms
+            }
+        }
+        setTimeout(retryPositionVerticalLine, 1000); // Inicia retry após 1s
+
+        // Adaptador para ajustar x-axis labels
+        xAxis.get('renderer').labels.template.adapters.add('dx', function (dx, target) {
+            const dataItem = target.dataItem;
+            if (!dataItem || !dataItem.dataContext) return dx;
+
+            const category = dataItem.get('category');
+            const index = dataItem.dataContext.index;
+            const data = xAxis.data.values;
+
+            if (index === 1) {
+                const firstCategory = data[0]?.filtro;
+                const secondCategory = data[1]?.filtro;
+
+                if (
+                    (firstCategory === 'Allos' && secondCategory === 'Regional 1') ||
+                    (firstCategory === 'Regional' && secondCategory === 'Shopping 1')
+                ) {
+                    return +40;
+                }
+            }
+            return index > 0 ? +40 : 0;
+        });
+
+        // Axis y
+        var yAxis = chart.yAxes.push(
+            am5xy.ValueAxis.new(root, {
+                min: 0,
+                renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0 }),
+            }),
+        );
+        yAxis.get('renderer').grid.template.set('visible', false);
+        yAxis.get('renderer').labels.template.set('visible', false);
+
+        // Função para criar séries
+        function createSeries({ name, valueYField, width, color }) {
+            let series = chart.series.push(
+                am5xy.ColumnSeries.new(root, {
+                    name,
+                    xAxis,
+                    yAxis,
+                    valueYField,
+                    categoryXField: 'filtro',
+                    clustered: false,
+                    tooltip: am5.Tooltip.new(root, {
+                        labelText: `${name}: {valueY}`,
+                    }),
+                }),
+            );
+
+            series.columns.template.setAll({
+                width: am5.percent(width),
+                tooltipY: 0,
+                strokeOpacity: 0,
+                fill: am5.color(color),
+                stroke: am5.color(color),
+            });
+
+            series.columns.template.adapters.add('dx', function (dx, target) {
+                const dataItem = target.dataItem;
+                if (!dataItem || !dataItem.dataContext) return dx;
+
+                const category = dataItem.get('categoryX');
+                const index = dataItem.dataContext.index;
+                const data = series.data.values;
+
+                if (index === 1) {
+                    const firstCategory = data[0]?.filtro;
+                    const secondCategory = data[1]?.filtro;
+
+                    if (
+                        (firstCategory === 'Allos' && secondCategory === 'Regional 1') ||
+                        (firstCategory === 'Regional' && secondCategory === 'Shopping 1')
+                    ) {
+                        return +40;
+                    }
+                }
+                return index > 0 ? +40 : 0;
+            });
+
+            const indexedData = data.map((item, index) => ({ ...item, index }));
+            series.data.setAll(indexedData);
+
+            return series;
+        }
+
+        // Criar séries iniciais
+        const seriesList = [
+            createSeries({ name: 'Meta', valueYField: 'meta', width: 80, color: '#6cc680' }),
+            createSeries({ name: 'Zona Potencial', valueYField: 'zonaPotencial', width: 60, color: '#00616f' }),
+            createSeries({ name: 'Mês/YTD', valueYField: 'mesYTD', width: 40, color: '#ccc5ba' }),
+        ];
+
+        // Adicionar dados indexados ao xAxis
+        const indexedData = data.map((item, index) => ({ ...item, index }));
+        xAxis.data.setAll(indexedData);
+
+        // Legendas
+        var legend = chart.children.push(
+            am5.Legend.new(root, {
+                centerX: am5.p50,
+                x: am5.p50,
+                paddingTop: 10,
+                layout: root.horizontalLayout,
+            }),
+        );
+        legend.markers.template.setAll({ width: 16, height: 16, strokeOpacity: 0 });
+        legend.markerRectangles.template.setAll({
+            cornerRadiusTL: 2,
+            cornerRadiusTR: 2,
+            cornerRadiusBL: 2,
+            cornerRadiusBR: 2,
+        });
+        legend.labels.template.setAll({ fontSize: 14, fontWeight: '500' });
+        legend.valueLabels.template.setAll({ text: '' });
+        legend.data.setAll(chart.series.values);
+
+        // Cursor
+        var cursor = chart.set('cursor', am5xy.XYCursor.new(root, {}));
+
+        // Scroll horizontal dinâmico
+        function ajustarMinWidth() {
+            var categoryWidth = 80;
+            divContainer.style.minWidth = data.length * categoryWidth + 'px';
+        }
+        ajustarMinWidth();
+
+        // Atualizar dados no select
+        selectFilter.addEventListener('change', function (e) {
+            const selected = e.target.value;
+            if (selected === '') return;
+
+            data = datasets[selected];
+            const indexedData = data.map((item, index) => ({ ...item, index }));
+            xAxis.data.setAll(indexedData);
+
+            seriesList.forEach((series) => {
+                series.data.setAll(indexedData);
+                series.appear(500);
+            });
+
+            exporting.set('dataSource', data);
+            ajustarMinWidth();
+            positionVerticalLine(); // Atualiza a posição da linha vertical
+        });
+    });
+</script>

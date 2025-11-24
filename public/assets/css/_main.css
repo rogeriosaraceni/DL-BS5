@@ -1,0 +1,114 @@
+/* ////////////////////////////////////////////////////////////////////
+*
+*  CSS APP
+*
+* - html / body / main / container-fluid
+* - breadcrumb
+* - title-app
+* - links
+* - Shadows
+* - Scrollbar
+* - table-asp
+* - pre e code
+*
+* //////////////////////////////////////////////////////////////////// */
+
+/* --------------------------------------------------------------------
+* - html / body / main / container-fluid
+* -------------------------------------------------------------------- */
+html {
+   height: 100%;
+}
+body {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   overflow-x: hidden;
+   background-color: var(--app-body-bg);
+}
+body.popup {
+   padding: 1rem;
+}
+
+.main {
+   flex: 1;
+   padding-bottom: 30px;
+}
+
+/* --------------------------------------------------------------------
+* - title-app
+---------------------------------------------------------------------- */
+.title-app{
+   position: relative;
+   font-weight: 400;
+   margin-bottom: 1rem;
+   padding-bottom: 0.3rem;
+}
+.title-app::after{
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 50%;
+   height: 1px;
+   background-color: var(--orange);
+}
+
+/* --------------------------------------------------------------------
+* - links
+* -------------------------------------------------------------------- */
+a { transition: all 0.2s;}
+
+/* --------------------------------------------------------------------
+* - shadows
+* -------------------------------------------------------------------- */
+.shadow-blur { 
+    box-shadow: inset 0 0 1px 1px hsla(0,0%,100%,.9),0 20px 27px 0 rgba(0,0,0,.05)!important;
+}
+
+/* --------------------------------------------------------------------
+* - Scrollbar CSS v1.2 
+* - Last update: 06 jul 2021
+* - Rogério Saraceni
+* -------------------------------------------------------------------- */
+:root{
+   --scrollbar-bg: #f7f2f2;
+   --scrollbar-bg-track: #bebcbc;
+   --scrollbar-bg-thumb: #bbb5b5;
+   --scrollbar-vertical: 8px;
+   --scrollbar-horizontal: 8px;
+}
+
+/* Works on Firefox */
+* {
+   scrollbar-width: thin;
+   scrollbar-color: var(--bg-scrollbar-track) var(--scrollbar-bg);
+}
+/* Works on Chrome, Edge, and Safari */
+::-webkit-scrollbar { width: 8px;}
+::-webkit-scrollbar { height: 8px;}
+::-webkit-scrollbar-track { background: var(--scrollbar-bg);}
+::-webkit-scrollbar-thumb {
+   border-radius: 10px;
+   border: 1px solid transparent;
+   background-color: var(--scrollbar-bg-track);
+}
+
+/* --------------------------------------------------------------------
+* - pre e code
+* -------------------------------------------------------------------- */
+pre{
+   padding: 1rem;
+   border-radius: var(--bs-border-radius);
+}
+
+:root[data-bs-theme='light'] {
+   pre{
+      background-color: #111;
+   }
+}
+:root[data-bs-theme='dark'] {
+   pre{
+      background-color: #111;
+   }
+}

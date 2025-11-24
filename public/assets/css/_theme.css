@@ -1,0 +1,69 @@
+/* --------------------------------------------------------------------
+app colors
+-------------------------------------------------------------------- */
+[data-bs-theme=light] {
+    --app-body-bg: #fafbfe;
+
+    --app-nav-bg: #fff;
+    --app-nav-link-hover: #111;
+    --app-nav-active-bg: #f4f6f7;
+    --app-nav-active-hover-bg: #e4e8eb;
+    --app-nav-offcanvas-bg: #fff;
+
+    --app-footer-bg: #fff;
+}
+
+[data-bs-theme=dark] {
+    --app-body-bg: #202634;
+
+    --app-nav-bg: #1a1f2c;
+    --app-nav-link-hover: #f8f8f8;
+    --app-nav-active-bg: #33383d;
+    --app-nav-active-hover-bg: #2a2e31;
+    --app-nav-offcanvas-bg: #3a444e;
+
+    --app-footer-bg: #1a1f2c;
+
+}
+
+
+/* --------------------------------------------------------------------
+bootstrap colors
+-------------------------------------------------------------------- */
+[data-bs-theme=light] {
+    --bs-box-shadow: 0px 1px 5px 0px rgba(154, 161, 171, 0.15);
+
+    body{
+        --bs-body-color: #444a4e;
+    }
+
+    .card {
+        --bs-card-bg: #ffffff;
+    }
+
+    .dropdown-menu {
+        --bs-dropdown-bg: #fff;
+    }
+
+}
+
+[data-bs-theme=dark] {
+    --bs-box-shadow: 0px 0px 35px 0px rgba(49, 57, 66, 0.5);
+    
+    body{
+        --bs-body-color: #dcdfe2;
+    }
+
+    .card {
+        --bs-card-bg: #293042;
+    }
+
+    .dropdown-menu {
+        --bs-dropdown-bg: #293042;
+        --bs-dropdown-link-hover-bg: #37404a;
+    }
+    
+}
+
+
+

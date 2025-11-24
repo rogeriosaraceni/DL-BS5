@@ -1,0 +1,87 @@
+/* --------------------------------------------------------------------
+ * - nav
+---------------------------------------------------------------------- */
+.navbarApp{
+    background-color: var(--app-nav-bg);
+}
+
+.navbarApp .navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbarApp .nav-link {
+    border-radius: 4px;
+}
+.navbarApp .nav-link:hover {
+    color: var(--app-nav-link-hover);
+}
+.navbarApp .nav-item.active > .nav-link {
+    background-color: var(--app-nav-active-bg);
+}
+.navbarApp .nav-item.active > .nav-link:hover {
+    background-color: var(--app-nav-active-hover-bg);
+}
+
+/* === font-size === */
+.navbarApp .nav-link,
+.navbarApp .navbar-brand {
+    font-size: 0.875rem;
+}
+
+/* === info-user-mobile === */
+.navbarApp .info-user-mobile {
+    display: none;
+}
+
+/* === Media Queries === */
+
+/* md-down */
+@media (max-width: 991.98px) {
+    .navbar-toggler + .navbar-collapse .dropdown.nav-item .dropdown-menu {
+        overflow: auto;
+    }
+}
+
+/* sm-down */
+@media (max-width: 576px) {
+    .navbarApp .navbar-toggler {
+        padding: 0;
+    }
+
+    .navbarApp .info-user-desktop {
+        display: none !important;
+    }
+
+    .navbarApp .info-user-mobile {
+        display: block;
+    }
+}
+
+/* offcanvas-collapse (custom) */
+@media screen and (max-width: 1200px) {
+    .navbarApp .nav-link {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .navbarApp .offcanvas-collapse {
+        position: fixed;
+        top: 80px; /* altura da navbar */
+        bottom: 0;
+        left: 100%;
+        width: 100%;
+        padding: 1rem;
+        overflow-y: auto;
+        visibility: hidden;
+        background-color: var(--app-nav-offcanvas-bg);
+        backdrop-filter: blur(0);
+        transition:
+            transform 0.3s ease-in-out,
+            visibility 0.3s ease-in-out;
+    }
+
+    .navbarApp .offcanvas-collapse.open {
+        visibility: visible;
+        transform: translateX(-100%);
+    }
+}

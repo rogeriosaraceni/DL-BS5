@@ -1,0 +1,61 @@
+---
+import BtnLightDarkMode from './_btnLightDarkMode.astro';
+import DropdownLanguage from './_dropdown-language.astro';
+import DropdownUser from './_dropdown-user.astro';
+import NavLinks from './_nav-links.astro';
+---
+
+<nav class="navbar navbarApp navbarAppFloat navbar-expand-xl shadow" data-el="fixedTop">
+    <section class="container-fluid">
+        <div class="d-flex align-items-center gap-3">
+            <button
+                id="btnNavbarSideCollapse"
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarApp"
+                aria-controls="navbarApp"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">Logo</a>
+        </div>
+
+        <div class="navbar-collapse offcanvas-collapse h-100" id="navbarApp">
+            <ul class="navbar-nav ms-auto gap-1">
+                <NavLinks />
+            </ul>
+        </div>
+
+        <ul class="navbar-nav align-items-center ps-2 flex-row flex-column-xl">
+            <li class="nav-item dropdown">
+                <DropdownLanguage />
+            </li>
+
+            <li class="nav-item">
+                <BtnLightDarkMode />
+            </li>
+
+            <li class="nav-item dropdown">
+                <DropdownUser />
+            </li>
+        </ul>
+    </section>
+</nav>
+
+<style>
+    .navbarAppFloat {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+        margin: 0.5rem 0.5rem;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        border-radius: 0.5rem;
+    }
+</style>

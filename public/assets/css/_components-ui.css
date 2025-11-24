@@ -1,0 +1,27 @@
+/* --------------------------------------------------------------------
+* - page-title
+---------------------------------------------------------------------- */
+.page-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.page-title-wrapper .page-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.page-title-wrapper .page-title-breadcrumb .breadcrumb {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .page-title-breadcrumb {
+        display: none;
+    }
+}
+
+/* --------------------------------------------------------------------
+* - 
+---------------------------------------------------------------------- */

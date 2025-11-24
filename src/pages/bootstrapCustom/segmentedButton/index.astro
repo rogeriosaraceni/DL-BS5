@@ -1,0 +1,19 @@
+---
+import Layout from '@layouts/LayoutSidebar.astro';
+import PageTitle from '@components/ui/PageTitle.astro';
+import ContentInfo from './_content-info.astro';
+import ContentTab from './_content-tab.astro';
+
+const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Bootstrap Custom' }, { label: 'Segmented Button' }];
+---
+
+<Layout>
+    <PageTitle title="Segmented Button" breadcrumbs={breadcrumbs} />
+
+    <div class="card">
+        <div class="card-body">
+            <ContentInfo />
+            <ContentTab />
+        </div>
+    </div>
+</Layout>

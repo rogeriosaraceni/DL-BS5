@@ -1,0 +1,31 @@
+---
+interface Props {
+    title: string;
+    breadcrumbs?: Breadcrumb[];
+}
+
+interface Breadcrumb {
+    label: string;
+    href?: string;
+}
+
+const { title, breadcrumbs = [] } = Astro.props;
+---
+
+<div class="page-title-wrapper">
+    <div class="page-title">{title}</div>
+
+    {
+        breadcrumbs.length > 0 && (
+            <div class="page-title-breadcrumb">
+                <ol class="breadcrumb">
+                    {breadcrumbs.map((crumb, index) => (
+                        <li class:list={['breadcrumb-item', { active: index === breadcrumbs.length - 1 }]}>
+                            {crumb.href ? <a href={crumb.href}>{crumb.label}</a> : crumb.label}
+                        </li>
+                    ))}
+                </ol>
+            </div>
+        )
+    }
+</div>

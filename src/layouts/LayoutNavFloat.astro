@@ -1,0 +1,46 @@
+---
+import Footer from '@includes/Footer.astro';
+import Head from '@includes/Head.astro';
+import Header from '@includes/Header.astro';
+import Nav from '@includes/Nav/nav-float.astro';
+---
+
+<!doctype html>
+<html lang="pt-BR" data-bs-theme="light">
+    <head>
+        <Head />
+    </head>
+
+    <body>
+        <Header />
+        <Nav />
+        <main class="main-app" data-el="mainApp">
+            <div class="container-fluid">
+                <slot />
+            </div>
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style is:global>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .main-app {
+        flex: 1;
+        margin: 0 0.75rem;
+        padding-top: 2rem;
+    }
+
+    .footer-app {
+        text-align: center;
+        padding: 1rem 1rem;
+        font-size: 0.875em;
+        color: var(--bs-secondary-color);
+    }
+</style>

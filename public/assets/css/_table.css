@@ -1,0 +1,84 @@
+/* ////////////////////////////////////////////////////////////////////
+table>thead>tr>th / table>tfoot>tr>th
+table-fixed
+striped
+hover
+icon-tab
+//////////////////////////////////////////////////////////////////// */
+
+/* --------------------------------------------------------------------
+table>thead>tr>th / table>tfoot>tr>th
+-------------------------------------------------------------------- */
+.table{
+   --bs-table-color: initial;
+   margin-bottom: 0.5rem;
+   font-size: var(--bs-body-font-size);
+}
+
+.table>thead>tr>th,
+.table>tfoot>tr>th {
+   text-align: center;
+   border-bottom-width: 1px;
+   font-weight: 600;
+   padding-top: 0.3rem;
+   padding-bottom: 0.3rem;
+   color: #fff;
+   background-color: #007fa3;
+}
+
+.table>thead>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>th,
+.table>tbody>tr>td,
+.table>tfoot>tr>th,
+.table>tfoot>tr>td {
+   padding: 0.4rem 0.3rem;
+   vertical-align: middle;
+   border-color: var(--bs-border-color);
+}
+
+/* --------------------------------------------------------------------
+table-fixed
+-------------------------------------------------------------------- */
+.table-fixed { 
+   table-layout: fixed;
+}
+
+/* --------------------------------------------------------------------
+striped
+-------------------------------------------------------------------- */
+.table-striped>tbody>tr.odd td{
+   box-shadow: none !important;
+   background-color: #f9f9f9;
+}
+.table-striped>tbody>tr.even td{
+   box-shadow: none !important;
+   background-color: transparent;
+}
+
+/* --------------------------------------------------------------------
+hover
+-------------------------------------------------------------------- */
+table.table.table-hover>tbody>tr:hover>*,
+table.dataTable.table-hover>tbody>tr:hover>* {
+   box-shadow: none !important;
+   background-color: rgba(253, 253, 200, 0.25);
+}
+
+/* --------------------------------------------------------------------
+icon-tab
+-------------------------------------------------------------------- */
+.icon-tab{
+   font-size: 1.4rem;
+   color: #c1c6ca;
+}
+
+/* --------------------------------------------------------------------
+Datatables 
+-------------------------------------------------------------------- */
+/* corrigi bug barra de rolagem com bootstrap */
+table.dataTable,
+table.dataTable td,
+table.dataTable th {
+   box-sizing: border-box;
+}

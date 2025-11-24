@@ -1,0 +1,32 @@
+---
+import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
+---
+
+<div class="d-flex mb-3">
+    <BtnCopyCode id="#code" />
+</div>
+
+<pre><code class="language-html" id="code">&lt;label&gt;
+    &lt;div class="d-flex aling-items-center gap-2"&gt;
+        &lt;span&gt;Anexar Arquivo:&lt;/span&gt;
+        &lt;span
+            data-bs-toggle="tooltip"
+            data-bs-title="Extensões: .png, .jpg, .jpeg, .svg e .heic | Máximo: 10 MB"
+        &gt;
+            &lt;i class="bi bi-info-circle-fill"&gt;&lt;/i&gt;
+        &lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;input
+        type="file"
+        name="anexo"
+        multiple
+        class="form-control"
+        data-file-bite="10485760"
+        data-file-extensions=".png, .jpg, .jpeg, .svg"
+        onchange="validateFileInput(this)"
+    /&gt;
+&lt;/label&gt;
+
+&lt;script src="/assets/plugins/validateFileInput.js"&gt;&lt;/script&gt;
+</code></pre>

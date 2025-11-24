@@ -1,0 +1,183 @@
+/* --------------------------------------------------------------------
+* - variables
+---------------------------------------------------------------------- */
+:root {
+    /* sidebar sizes */
+    --width-sidebar: 260px;
+    --width-sidebarMin: 60px;
+
+    /* sidebar background */
+    --sidebar-bg: #313a46;
+
+    /* sidebar text color */
+    --navlink-color-sidebar: #c9d3e2;
+    --navlink-color-sidebar-hover: #fff;
+
+    /* sidebar active text color and bg-color */
+    --navlink-color-sidebar-active: #dbbd0f;
+}
+
+/* --------------------------------------------------------------------
+* - sidebar-app
+---------------------------------------------------------------------- */
+.sidebarApp {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--width-sidebar);
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    transition: all 0.3s;
+}
+
+.contentRightApp {
+    margin-left: var(--width-sidebar);
+}
+.sidebarMin .contentRightApp {
+    margin-left: var(--width-sidebarMin);
+}
+
+/* --------------------------------------------------------------------
+* - sidebarMin
+---------------------------------------------------------------------- */
+.sidebarMin .sidebarApp {
+    width: var(--width-sidebarMin);
+}
+.sidebarMin .sidebarApp:hover {
+    width: var(--width-sidebar);
+}
+
+.sidebarMin .sidebarApp .navSidebarApp .nav-item .nav-link .name,
+.sidebarMin .sidebarApp .navSidebarApp .nav-item .nav-link .arrow {
+    visibility: hidden;
+}
+
+.sidebarMin .sidebarApp:hover .navSidebarApp .nav-item .nav-link .name,
+.sidebarMin .sidebarApp:hover .navSidebarApp .nav-item .nav-link .arrow {
+    visibility: visible;
+}
+
+.sidebarMin .header-app .navbar {
+    margin-left: var(--width-sidebarMin);
+}
+
+/* --------------------------------------------------------------------
+* - logo
+---------------------------------------------------------------------- */
+.sidebarApp .nav-brand {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 1rem 1rem 1rem;
+}
+.sidebarApp .nav-brand img {
+    max-width: 50px;
+    transition: all 0.3s;
+}
+.sidebarMin .sidebarApp .nav-brand img {
+    max-width: 30px;
+}
+
+/* --------------------------------------------------------------------
+* - contentSidebarApp
+---------------------------------------------------------------------- */
+.contentSidebarApp {
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding-bottom: 7rem;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* --------------------------------------------------------------------
+* - navSidebarApp
+---------------------------------------------------------------------- */
+.navSidebarApp {
+    flex-direction: column;
+    font-size: 1rem;
+}
+.navSidebarApp .nav-item {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------
+* - .nav-link
+---------------------------------------------------------------------- */
+.navSidebarApp .nav-item .nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.4rem 0.8rem 1.4rem;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    color: var(--navlink-color-sidebar);
+    transition: all 0.3s;
+}
+
+.navSidebarApp .nav-item .nav-link:hover {
+    color: var(--navlink-color-sidebar-hover);
+}
+.navSidebarApp .nav-item .nav-link .icon-img {
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 1.1rem;
+}
+.navSidebarApp .nav-item .nav-link .icon-img img {
+    max-width: 100%;
+    height: auto;
+}
+.navSidebarApp .nav-item .nav-link .name {
+    margin-left: 1rem;
+    white-space: nowrap;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
+.navSidebarApp .nav-item .nav-link .arrow {
+    position: absolute;
+    right: 1rem;
+    font-size: 0.75rem;
+    transition: all 150ms ease-in;
+}
+.navSidebarApp .nav-item .nav-link[data-bs-toggle='collapse'][aria-expanded='true'] .arrow {
+    transform: rotate(90deg);
+}
+
+/* --------------------------------------------------------------------
+* - .sub-menu (Level 2)
+---------------------------------------------------------------------- */
+.navSidebarApp .sub-menu {
+    padding-left: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.navSidebarApp .sub-menu .nav-item .nav-link {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.8rem;
+}
+.navSidebarApp .sub-menu .nav-item .nav-link:hover {
+    color: var(--navlink-color-sidebar-hover);
+}
+.navSidebarApp .sub-menu .nav-item .nav-link .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+}
+
+/* --------------------------------------------------------------------
+* - links active
+---------------------------------------------------------------------- */
+ul.navSidebarApp ul.sub-menu li.nav-item a.nav-link {
+    padding-left: 0;
+    font-size: 0.8rem;
+    color: var(--navlink-color-sidebar);
+}
+ul.navSidebarApp li.nav-item.active a.nav-link {
+    color: var(--navlink-color-sidebar-active);
+}
+ul.navSidebarApp ul.sub-menu li.nav-item.active a.nav-link {
+    color: var(--navlink-color-sidebar-active);
+}

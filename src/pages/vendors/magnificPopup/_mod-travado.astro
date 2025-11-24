@@ -1,0 +1,95 @@
+---
+import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
+
+const codeSnippet2 = `
+<a class="myPopup btn btn-success" href="https://dimsemenov.com/plugins/magnific-popup/">
+    Open popup
+</a>
+
+<script>
+    $('.myPopup').magnificPopup({
+        type: 'iframe',
+        showCloseBtn: false, //btn close desabilitado
+        closeOnBgClick: false, //fechamento na overley desabilitado
+        enableEscapeKey: false, //fechamento teclado
+        iframe: {
+            markup:
+                '<style>.mfp-iframe-holder .mfp-content {width:100%;max-width:992px;height:720px;}</style>' +
+                '<div class="mfp-iframe-scaler" >' +
+                '<div class="mfp-close"></div>' +
+                '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
+                '	</div></div>',
+        },
+    });
+</script>
+`;
+---
+
+<div class="card">
+    <div class="card-body">
+        <h6>Modelo Travado</h6>
+
+        <ul class="nav nav-tabs nav-flat mb-3">
+            <li class="nav-item" role="presentation">
+                <a
+                    href="#tab-preview2"
+                    class="nav-link active"
+                    data-bs-toggle="tab"
+                    role="tab"
+                    aria-controls="nav-preview2"
+                    aria-selected="true"
+                >
+                    Preview
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a
+                    href="#tab-code2"
+                    class="nav-link"
+                    data-bs-toggle="tab"
+                    role="tab"
+                    aria-controls="nav-code2"
+                    aria-selected="false"
+                >
+                    Code
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content border-0">
+            <div class="tab-pane show active" id="tab-preview2">
+                <a class="myPopup btn btn-success" href="https://dimsemenov.com/plugins/magnific-popup/">
+                    Open popup
+                </a>
+
+                <script is:inline>
+                    $('.myPopup').magnificPopup({
+                        type: 'iframe',
+                        showCloseBtn: false, //btn close desabilitado
+                        closeOnBgClick: false, //fechamento na overley desabilitado
+                        enableEscapeKey: false, //fechamento teclado
+                        iframe: {
+                            markup:
+                                '<style>.mfp-iframe-holder .mfp-content {width:100%;max-width:992px;height:720px;}</style>' +
+                                '<div class="mfp-iframe-scaler" >' +
+                                '<div class="mfp-close"></div>' +
+                                '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
+                                '	</div></div>',
+                        },
+                    });
+                </script>
+            </div>
+
+            <div class="tab-pane code" id="tab-code2">
+                <div class="d-flex mb-3">
+                    <BtnCopyCode id="#code2" />
+                </div>
+
+                <pre>
+                    <code class="language-javascript" id="code2">{codeSnippet2}</code>
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>

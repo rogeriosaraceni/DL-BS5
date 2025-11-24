@@ -1,0 +1,20 @@
+---
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<button class="btn btn btn-success btn-clipboard" data-clipboard-target={id}>
+    <i class="bi bi-copy"></i> Copy
+</button>
+
+<script is:inline>
+    new ClipboardJS('.btn-clipboard').on('success', function (e) {
+        e.trigger.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+        setTimeout(() => {
+            e.trigger.innerHTML = '<i class="bi bi-copy"></i> Copy';
+        }, 1500);
+    });
+</script>

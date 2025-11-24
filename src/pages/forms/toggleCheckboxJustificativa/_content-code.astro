@@ -1,0 +1,72 @@
+---
+import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
+
+const codeSnippet = `
+<script>
+    function toggleJustificativa(checkboxReprovado, labelJustificativa, textareaJustificativa) {
+        if ($(checkboxReprovado).is(':checked')) {
+            $(labelJustificativa).show('fast');
+            $(textareaJustificativa).prop('required', true);
+        } else {
+            $(labelJustificativa).hide('fast');
+            $(textareaJustificativa).prop('required', false).val('').text('');
+        }
+    }
+
+    $(document).ready(function () {
+        const checkboxReprovado = '#checkboxReprovado';
+        const labelJustificativa = '[data-wrapper="justificar"]';
+        const textareaJustificativa = '#justificativa';
+
+        toggleJustificativa(checkboxReprovado, labelJustificativa, textareaJustificativa);
+
+        $('[data-input="justificativa"]').change(function () {
+            toggleJustificativa(checkboxReprovado, labelJustificativa, textareaJustificativa);
+        });
+
+        $('#form').on('submit', function (e) {
+            toggleJustificativa(checkboxReprovado, labelJustificativa, textareaJustificativa);
+
+            if ($(checkboxReprovado).is(':checked') && !$(textareaJustificativa).val().trim()) {
+                e.preventDefault();
+                alert('Por favor, preencha a justificativa antes de enviar.');
+                $(textareaJustificativa).focus();
+            }
+        });
+    });
+</script>
+`;
+---
+
+<div class="d-flex mb-3">
+    <BtnCopyCode id="#code" />
+</div>
+
+<pre><code class="language-html" id="code">
+&lt;form id="form" method="POST" action=""&gt;
+    &lt;div class="d-flex flex-wrap gap-4"&gt;
+        &lt;label class="form-check-label gap-1 text-nowrap"&gt;
+            &lt;input type="radio" name="justificativa" class="form-check-input" value="1" data-input="justificativa" /&gt;
+            &lt;span&gt;Aprovado&lt;/span&gt;
+        &lt;/label&gt;
+
+        &lt;label class="form-check-label gap-1 text-nowrap"&gt;
+            &lt;input type="radio" name="justificativa" class="form-check-input" value="0" data-input="justificativa" id="checkboxReprovado"/&gt;
+            &lt;span&gt;Reprovado&lt;/span&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;hr /&gt;
+
+    &lt;label class="mb-2 w-100" data-wrapper="justificar" style="display: none"&gt;
+        &lt;span&gt;Justificar:&lt;/span&gt;
+        &lt;textarea name="jusificativaPendenciaAprova" class="form-control" rows="4" id="justificativa"&gt;Texto aqui&lt;/textarea&gt;
+    &lt;/label&gt;
+
+    &lt;div class="d-flex align-items-center justify-content-end"&gt;
+        &lt;button type="submit" class="btn btn-primary mb-0"&gt;Salvar&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+    {codeSnippet}
+</code></pre>

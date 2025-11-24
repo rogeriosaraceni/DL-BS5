@@ -1,0 +1,24 @@
+---
+import BtnCopyCode from '@components/ui/BtnCopyCode.astro';
+---
+
+<div class="d-flex mb-3">
+    <BtnCopyCode id="#code" />
+</div>
+
+<pre><code class="language-html" id="code">&lt;link rel="stylesheet" href="/assets/plugins/select-icons/select-icons.css" /&gt;
+&lt;script src="/assets/plugins/select-icons/select-icons.js"&gt;&lt;/script&gt;
+
+&lt;label style="max-width: 420px;"&gt;
+    &lt;span&gt;Select Ícone:&lt;/span&gt;
+
+    &lt;div class="select-icons-bs-wrapper" id="select-icons-1"&gt;
+        &lt;div data-selectIcons="button" class="form-select"&gt;&lt;/div&gt;
+        &lt;div data-selectIcons="content" class="list-items"&gt;&lt;/div&gt;
+        &lt;input type="hidden" name="icon" data-selectInputIcon="input_icon" /&gt;
+    &lt;/div&gt;
+&lt;/label&gt;
+
+&lt;script&gt;
+    $('#select-icons-1').selectIcons();
+&lt;/script&gt;</code></pre>
