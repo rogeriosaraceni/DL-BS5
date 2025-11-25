@@ -41,6 +41,9 @@
         }
 
         // Função para verificar e converter HEIC
+        // https://github.com/hoppergee/heic-to/tree/main
+        // https://hoppergee.github.io/heic-to/example/
+        // https://github.com/hoppergee/heic-to/tree/main/dist/iife
         async function convertHeicFile(file) {
             try {
                 console.log('Iniciando conversão HEIC:', file.name);
@@ -312,7 +315,7 @@
                     success: function (resposta) {
                         console.log('Upload concluído:', resposta);
                         loader.hide();
-                        parent.$.magnificPopup.close();
+                        //parent.$.magnificPopup.close();
                         parent.showToast('green', 'Salvo com sucesso');
                     },
                     error: function (xhr, status, erro) {

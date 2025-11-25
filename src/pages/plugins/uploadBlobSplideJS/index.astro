@@ -4,9 +4,12 @@ import PageTitle from '@components/ui/PageTitle.astro';
 import ContentInfo from './_content-info.astro';
 import ContentPreview from './_content-preview.astro';
 import ContentCode from './_content-code.astro';
+import Toasts from '@components/Toasts.astro';
 
 const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Plugins' }, { label: 'upload Blob SplideJS' }];
 ---
+
+<Toasts />
 
 <Layout>
     <PageTitle title="upload Blob SplideJS" breadcrumbs={breadcrumbs} />
