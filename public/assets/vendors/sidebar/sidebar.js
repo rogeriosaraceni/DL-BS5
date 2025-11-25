@@ -5,9 +5,9 @@ const wrapperApp = document.querySelector('#wrapperApp');
 const sidebar = document.querySelector('.sidebarApp');
 const btnToggleSidebar = document.querySelector('[data-btn="toggleSidebar"]');
 
-console.log(wrapperApp);
-console.log(sidebar);
-console.log(btnToggleSidebar);
+// console.log(wrapperApp);
+// console.log(sidebar);
+// console.log(btnToggleSidebar);
 
 btnToggleSidebar?.addEventListener('click', (e) => {
     e.preventDefault();

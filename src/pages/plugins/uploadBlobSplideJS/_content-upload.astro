@@ -1,0 +1,66 @@
+---
+import ContentLoader from './_content-loader.astro';
+---
+
+<div class="card mb-4">
+    <article class="card-body">
+        <ContentLoader />
+
+        <div class="d-flex align-items-center gap-2 mb-2">
+            <i
+                class="bi bi-info-circle-fill"
+                data-bs-toggle="tooltip"
+                data-bs-title="Arquivos suportados: .JPG, .JPEG, .PNG, .SVG e .HEIC"
+            >
+            </i>
+            <strong>Anexar imagens:</strong>
+        </div>
+
+        <section class="d-flex flex-wrap justify-content-center gap-2 mb-2">
+            <label class="upload-area upload-area-mobile">
+                <input
+                    capture="environment"
+                    type="file"
+                    id="image-upload-mobile"
+                    class="d-none"
+                    multiple
+                    data-inputfile="rules"
+                    data-accept=".jpg,.jpeg,.png,.svg,.HEIC"
+                    data-size="10485760"
+                />
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="document.getElementById('image-upload-mobile').click()"
+                >
+                    <i class="fas fa-camera icon"></i> Tirar Foto
+                </button>
+            </label>
+
+            <label class="upload-area upload-area-desktop">
+                <input
+                    type="file"
+                    id="image-upload"
+                    class="d-none"
+                    multiple
+                    accept="image/*"
+                    data-inputfile="rules"
+                    data-accept=".jpg,.jpeg,.png,.svg,.HEIC"
+                    data-size="10485760"
+                />
+                <button type="button" class="btn btn-primary" onclick="document.getElementById('image-upload').click()">
+                    <i class="bi bi-file-earmark-image"></i> Selecionar Imagens
+                </button>
+            </label>
+        </section>
+
+        <div id="selected-files" class="hidden">
+            <strong>Imagens selecionadas:</strong>
+            <div id="image-list" class="d-flex flex-wrap gap-1"></div>
+        </div>
+
+        <div id="no-images-message" class="alert alert-info py-1">
+            <strong>Nenhuma imagem selecionada.</strong> Por favor, selecione algumas imagens para preencher o slider.
+        </div>
+    </article>
+</div>

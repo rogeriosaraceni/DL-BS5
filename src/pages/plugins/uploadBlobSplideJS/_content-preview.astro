@@ -1,6 +1,9 @@
 ---
 import './_styles.css';
 import Scripts from './_scripts.astro';
+import ContentUpload from './_content-upload.astro';
+import ContentSplide from './_content-splide.astro';
+import ContentChecklist from './_content-checklist.astro';
 ---
 
 <link rel="stylesheet" href="/assets/vendors/splide/splide.min.css" />
@@ -9,88 +12,19 @@ import Scripts from './_scripts.astro';
 <script is:inline src="/assets/vendors/splide/splide.min.js"></script>
 
 <form id="form-upload" method="POST" action="processos.asp" enctype="multipart/form-data">
+    <ContentUpload />
+
     <div class="card mb-4">
         <article class="card-body">
-            <i
-                class="bi bi-info-circle-fill"
-                data-bs-toggle="tooltip"
-                data-bs-title="Arquivos suportados: .JPG, .JPEG, .PNG, .SVG e .HEIC"></i>
-            <strong>Anexar imagens:</strong>
+            <section class="row">
+                <div class="col-md-7">
+                    <ContentSplide />
+                </div>
 
-            <section class="d-flex flex-wrap justify-content-center gap-2 mb-2">
-                <label class="upload-area upload-area-mobile">
-                    <input
-                        capture="environment"
-                        type="file"
-                        id="image-upload-mobile"
-                        class="d-none"
-                        multiple
-                        accept="image/*"
-                        data-inputfile="rules"
-                        data-accept=".jpg,.jpeg,.png,.svg,.heic"
-                        data-size="10485760"
-                    />
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="document.getElementById('image-upload-mobile').click()"
-                    >
-                        <i class="fas fa-camera icon"></i> Tirar Foto
-                    </button>
-                </label>
-
-                <label class="upload-area upload-area-desktop">
-                    <input
-                        type="file"
-                        id="image-upload"
-                        class="d-none"
-                        multiple
-                        accept="image/*"
-                        data-inputfile="rules"
-                        data-accept=".jpg,.jpeg,.png,.svg,.heic"
-                        data-size="10485760"
-                    />
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="document.getElementById('image-upload').click()"
-                    >
-                        <i class="bi bi-file-earmark-image"></i> Selecionar Imagens
-                    </button>
-                </label>
+                <div class="col-md-5">
+                    <ContentChecklist />
+                </div>
             </section>
-
-            <div id="selected-files" class="hidden">
-                <strong>Imagens selecionadas:</strong>
-                <div id="image-list" class="d-flex flex-wrap gap-1"></div>
-            </div>
-
-            <div id="no-images-message" class="alert alert-info py-1">
-                <strong>Nenhuma imagem selecionada.</strong> Por favor, selecione algumas imagens para preencher o slider.
-            </div>
-        </article>
-    </div>
-
-    <div class="card mb-4">
-        <article class="card-body">
-            <div id="image-carousel" class="splide hidden">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <!-- As imagens serão adicionadas aqui via JavaScript -->
-                    </ul>
-                </div>
-
-                <div class="d-flex align-items-center mt-2">
-                    <button type="button" class="splide__toggle" data-bs-toggle="tooltip" data-bs-title="Play/Pause">
-                        <i class="bi bi-play-circle splide__toggle__play"></i>
-                        <i class="bi bi-pause-circle splide__toggle__pause"></i>
-                    </button>
-
-                    <div class="splide__progress w-100">
-                        <div class="splide__progress__bar"></div>
-                    </div>
-                </div>
-            </div>
 
             <hr />
             <div class="d-flex justify-content-end gap-2">

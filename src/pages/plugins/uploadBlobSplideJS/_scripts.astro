@@ -3,10 +3,19 @@
         let splide = null;
         let images = [];
 
+        // Função para mostrar/ocultar loading
+        function showLoading(show) {
+            if (show) {
+                $('#loading-overlay').removeClass('hidden');
+            } else {
+                $('#loading-overlay').addClass('hidden');
+            }
+        }
+
         // Função de validação de arquivos
         function validateFileInput(inputFile) {
             const input = inputFile;
-            const maxSize = parseInt(input.dataset.size, 10); // Tamanho máximo em bytes
+            const maxSize = parseInt(input.dataset.size, 10);
             const extensionsText = input.dataset.accept || '';
             const extensions = extensionsText ? new RegExp(`(${extensionsText.replace(/,/g, '|')})$`, 'i') : null;
 
@@ -14,192 +23,318 @@
                 for (const file of input.files) {
                     const fileName = file.name;
 
-                    // Validação de extensão
                     if (extensions && !extensions.test(fileName)) {
                         alert(`Fora das extensões permitidas: ${extensionsText}`);
-                        input.value = ''; // Limpar o input
+                        input.value = '';
                         return false;
                     }
 
-                    // Validação de tamanho
                     if (maxSize && file.size > maxSize) {
                         const maxMB = (maxSize / (1024 * 1024)).toFixed(0).replace('.', ',');
                         alert(`Excede o tamanho máximo de ${maxMB} MB`);
-                        input.value = ''; // Limpar o input
+                        input.value = '';
                         return false;
                     }
                 }
             }
-            return true; // Todos os arquivos são válidos
+            return true;
         }
 
-        // Manipular seleção de arquivos
-        $('#image-upload').on('change', function () {
-            const files = this.files;
-            // Validar arquivos antes de processar
-            if (files.length > 0 && validateFileInput(this)) {
-                handleFiles(files);
-            }
-        });
+        // Função para verificar e converter HEIC
+        async function convertHeicFile(file) {
+            try {
+                console.log('Iniciando conversão HEIC:', file.name);
 
-        $('#image-upload-mobile').on('change', function () {
-            const files = this.files;
-            // Validar arquivos antes de processar
-            if (files.length > 0 && validateFileInput(this)) {
-                handleFiles(files);
-            }
-        });
+                const isHeic = await HeicTo.isHeic(file);
+                console.log('Resultado isHeic:', isHeic);
 
-        // Função para processar os arquivos
-        function handleFiles(files) {
-            let processedImages = 0;
-
-            for (let i = 0; i < files.length; i++) {
-                var file = files[i];
-
-                //timestamp
-                newName = new Date().valueOf() + '.jpg';
-
-                file = new File([file], newName, { type: file.type });
-
-                // Ignorar arquivos que não são imagens (já validados, mas mantido por segurança)
-                if (!file.type.match('image.*')) continue;
-
-                const index = Date.now() + i;
-                const objectUrl = URL.createObjectURL(file);
-
-                // Adicionar à lista de imagens
-                images.push({
-                    id: index,
-                    name: file.name,
-                    src: objectUrl,
-                    file: file,
-                });
-
-                // Adicionar preview com botão de deletar
-                $('#image-list').append(
-                    `<li data-image-id="${index}">
-                        <img src="${objectUrl}" class="image-preview" title="${file.name}">
-                        <button type="button" class="btn-del" data-image-id="${index}">
-                            <i class="bi bi-x-circle-fill"></i>
-                        </button>
-                    </li>`,
-                );
-
-                // Adicionar evento de clique para o botão de deletar
-                $(`button[data-image-id="${index}"]`).on('click', function () {
-                    const imageId = $(this).data('image-id');
-                    if (confirm('Tem certeza que deseja remover esta imagem?')) {
-                        deleteImage(imageId);
-                    }
-                });
-
-                processedImages++;
-
-                // Mostrar o container de imagens na primeira imagem
-                $('#selected-files').removeClass('hidden');
-
-                // Atualizar o slider após todas as imagens válidas serem processadas
-                if (processedImages === files.length) {
-                    updateSlider();
+                if (!isHeic) {
+                    console.log('Não é HEIC, retornando arquivo original');
+                    return file;
                 }
+
+                console.log('Convertendo HEIC para JPEG...');
+                const jpegBlob = await HeicTo({
+                    blob: file,
+                    type: 'image/jpeg',
+                    quality: 0.9,
+                });
+
+                console.log('Conversão concluída, criando novo arquivo...');
+                const newName = file.name.replace(/\.(heic|heif)$/i, '.jpg');
+                const convertedFile = new File([jpegBlob], newName, {
+                    type: 'image/jpeg',
+                });
+
+                console.log('Arquivo convertido criado:', convertedFile.name, convertedFile.size, 'bytes');
+                return convertedFile;
+            } catch (error) {
+                console.error('Erro na conversão HEIC:', error);
+                return file;
             }
         }
 
         // Função para deletar imagem
         function deleteImage(imageId) {
-            // Encontrar a imagem para liberar a URL
+            console.log('Deletando imagem:', imageId);
+
+            if (splide) {
+                try {
+                    splide.destroy(true);
+                    splide = null;
+                    console.log('Splide destruído');
+                } catch (e) {
+                    console.log('Splide já destruído');
+                }
+            }
+
             const image = images.find((img) => img.id === imageId);
             if (image) {
-                URL.revokeObjectURL(image.src); // Liberar a URL
+                try {
+                    URL.revokeObjectURL(image.src);
+                    console.log('URL revogada:', image.src);
+                } catch (e) {
+                    console.log('URL já revogada');
+                }
             }
 
-            // Remover a imagem do array
             images = images.filter((img) => img.id !== imageId);
-
-            // Remover o preview da imagem
             $(`li[data-image-id="${imageId}"]`).remove();
+            $('.splide__list').empty();
 
-            // Atualizar o slider
             updateSlider();
 
-            // Se não houver mais imagens, mostrar a mensagem
             if (images.length === 0) {
                 $('#selected-files').addClass('hidden');
+                $('#image-carousel').addClass('hidden');
+                $('#no-images-message').removeClass('hidden');
             }
+
+            console.log('Imagem deletada. Total restante:', images.length);
         }
 
-        // Função para atualizar o slider com as imagens
+        // Função para atualizar o slider
         function updateSlider() {
+            console.log('Atualizando slider. Total de imagens:', images.length);
+
             if (images.length === 0) {
                 $('#no-images-message').removeClass('hidden');
                 $('#image-carousel').addClass('hidden');
+                $('#selected-files').addClass('hidden');
                 return;
             }
 
             $('#no-images-message').addClass('hidden');
             $('#image-carousel').removeClass('hidden');
+            $('#selected-files').removeClass('hidden');
 
-            // Limpar slides existentes
+            if (splide) {
+                try {
+                    splide.destroy(true);
+                    splide = null;
+                } catch (e) {
+                    console.log('Splide já destruído');
+                }
+            }
+
             $('.splide__list').empty();
 
-            // Adicionar novas imagens
-            images.forEach(function (image) {
+            images.forEach(function (image, index) {
                 $('.splide__list').append(
-                    `<li class="splide__slide">
+                    `<li class="splide__slide" data-image-id="${image.id}">
+                        <div class="btnsPanel">
+                            <div class="content-left">
+                                <a class="splide_btn" data-bs-toggle="tooltip" data-bs-title="Ampliar" data-fancybox="" data-src="${image.src}" tabindex="-1">
+                                    <i class="bi bi-zoom-in"></i>
+                                </a>                        
+                            </div>
+                        </div>
                         <img src="${image.src}" alt="${image.name}">
                     </li>`,
                 );
             });
 
-            // Destruir instância anterior do Splide se existir
-            if (splide) {
-                splide.destroy();
-            }
+            const hasMultipleImages = images.length > 1;
 
-            // Inicializar o Splide
             splide = new Splide('#image-carousel', {
-                type: 'loop',
+                type: hasMultipleImages ? 'loop' : 'slide',
                 perPage: 1,
-                autoplay: true,
+                autoplay: hasMultipleImages,
                 interval: 6000,
-                pauseOnHover: true,
-                pagination: true,
-                arrows: true,
-            }).mount();
+                pauseOnHover: hasMultipleImages,
+                pagination: hasMultipleImages,
+                arrows: hasMultipleImages,
+                rewind: true,
+                waitForTransition: false,
+            });
 
-            console.log(images);
+            splide.mount();
+
+            console.log('Slider atualizado com', images.length, 'imagens');
+
+            // Inicializar tooltips tooltipstered
+            // $('.tooltip').not('.tooltipstered').tooltipster({
+            //     delay: 100,
+            // });
+
+            // Inicializar tooltips do Bootstrap
+            const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            tooltips.forEach((tooltip) => {
+                new bootstrap.Tooltip(tooltip, {
+                    delay: { show: 100, hide: 0 },
+                });
+            });
         }
 
-        // Inicialmente, esconder o slider e mostrar a mensagem
-        updateSlider();
+        // Função para processar os arquivos
+        async function handleFiles(files, inputElement) {
+            console.log('Iniciando processamento de', files.length, 'arquivos');
+
+            // Mostrar loading
+            showLoading(true);
+
+            let processedCount = 0;
+            const totalFiles = files.length;
+
+            for (let i = 0; i < totalFiles; i++) {
+                let file = files[i];
+                console.log('Processando arquivo:', file.name, file.type, file.size, 'bytes');
+
+                try {
+                    let finalFile;
+
+                    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+                        console.log('Arquivo HEIC detectado, convertendo...');
+                        finalFile = await convertHeicFile(file);
+                    } else {
+                        console.log('Arquivo não HEIC, usando original');
+                        const timestamp = Date.now() + i;
+                        const fileName = `image_${timestamp}.${file.name.split('.').pop()}`;
+                        finalFile = new File([file], fileName, { type: file.type });
+                    }
+
+                    console.log('Arquivo final:', finalFile.name, finalFile.type, finalFile.size, 'bytes');
+
+                    const timestamp = Date.now() + i;
+                    const objectUrl = URL.createObjectURL(finalFile);
+                    console.log('URL blob criada:', objectUrl);
+
+                    // Adicionar à lista de imagens
+                    images.push({
+                        id: timestamp,
+                        name: finalFile.name,
+                        src: objectUrl,
+                        file: finalFile,
+                        originalName: file.name,
+                    });
+
+                    // Adicionar preview
+                    $('#image-list').append(
+                        `<li data-image-id="${timestamp}">
+                            <img src="${objectUrl}" class="image-preview" title="${finalFile.name}">
+                            <button type="button" class="btn-del" data-bs-toggle="tooltip" data-bs-title="Deletar" data-image-id="${timestamp}">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </button>
+                        </li>`,
+                    );
+
+                    // Evento para deletar
+                    $(`button[data-image-id="${timestamp}"]`).on('click', function () {
+                        const imageId = $(this).data('image-id');
+                        if (confirm('Tem certeza que deseja remover esta imagem?')) {
+                            deleteImage(imageId);
+                        }
+                    });
+
+                    processedCount++;
+                    $('#selected-files').removeClass('hidden');
+
+                    console.log('Arquivo processado com sucesso:', finalFile.name);
+                } catch (error) {
+                    console.error(`Erro ao processar ${file.name}:`, error);
+                    processedCount++;
+                }
+            }
+
+            console.log('Processamento concluído. Total processados:', processedCount);
+
+            // Resetar o input para permitir selecionar o mesmo arquivo novamente
+            if (inputElement) {
+                inputElement.value = '';
+                console.log('Input resetado para permitir nova seleção');
+            }
+
+            // Ocultar loading
+            showLoading(false);
+
+            if (processedCount > 0) {
+                updateSlider();
+            }
+        }
+
+        // Event change desktop
+        $('#image-upload').on('change', async function () {
+            const files = this.files;
+            console.log('Arquivos selecionados (desktop):', files.length);
+            if (files.length > 0 && validateFileInput(this)) {
+                await handleFiles(files, this);
+            }
+        });
+
+        // Event change mobile
+        $('#image-upload-mobile').on('change', async function () {
+            const files = this.files;
+            console.log('Arquivos selecionados (mobile):', files.length);
+            if (files.length > 0 && validateFileInput(this)) {
+                await handleFiles(files, this);
+            }
+        });
+
+        const loader = $('#loader-process');
 
         $('#form-upload').on('submit', function (e) {
             e.preventDefault();
 
-            if (images.length > 0) {
+            if (images.length > 0 && $('input:checkbox.checklist:checked').length > 0) {
+                loader.show();
                 const form = document.getElementById('form-upload');
                 const formData = new FormData(form);
                 images.forEach((image, i) => {
                     console.log(image);
-                    formData.append('arquivos[]', image.file); // ou "arquivo"+i se quiser único
+                    formData.append('arquivos[]', image.file);
                 });
                 $.ajax({
                     url: $(form).attr('action'),
                     type: $(form).attr('method'),
                     data: formData,
-                    contentType: false, // precisa ser false para enviar corretamente
-                    processData: false, // evita que o jQuery tente serializar o FormData
+                    contentType: false,
+                    processData: false,
                     success: function (resposta) {
                         console.log('Upload concluído:', resposta);
+                        loader.hide();
+                        parent.$.magnificPopup.close();
+                        parent.showToast('green', 'Salvo com sucesso');
                     },
                     error: function (xhr, status, erro) {
                         console.error('Erro no upload:', erro);
+                        loader.hide();
                     },
                 });
             } else {
-                alert('Nenhuma imagem selecionada.');
+                alert('Nenhum checklist / imagem selecionado.');
             }
         });
+
+        //Para liberar memória revogando as URLs blob criadas para as imagens:
+        $(window).on('beforeunload', function () {
+            images.forEach(function (image) {
+                try {
+                    URL.revokeObjectURL(image.src);
+                } catch (e) {}
+            });
+        });
+
+        // Inicialização FINAL - depois de tudo definido
+        updateSlider();
     });
 </script>

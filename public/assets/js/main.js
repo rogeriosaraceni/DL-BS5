@@ -34,7 +34,7 @@ function initNavbarSideCollapse() {
     const offcanvasCollapse = document.querySelector('.offcanvas-collapse');
 
     if (!btnNavbarSideCollapse || !offcanvasCollapse) {
-        console.log('btnNavbarSideCollapse e offcanvasCollapse não encontrados');
+        //console.log('btnNavbarSideCollapse e offcanvasCollapse não encontrados');
         return;
     }
     btnNavbarSideCollapse.addEventListener('click', () => {
