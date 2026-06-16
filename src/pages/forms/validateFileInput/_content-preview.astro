@@ -1,14 +1,26 @@
 <form action="" method="POST" enctype="multipart/form-data">
-    <div class="d-flex aling-items-center gap-2">
-        <label>
-            <div class="d-flex aling-items-center gap-2">
-                <span>Anexar Arquivo:</span>
-                <span
+    <div class="row align-items-center">
+        <label class="col-sm-6">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-1">
+                    <span>Anexar Arquivo:</span>
+                    <span
+                        data-bs-toggle="tooltip"
+                        data-bs-title="Extensões: .png, .jpg, .jpeg, .svg e .heic | Máximo: 10 MB"
+                    >
+                        <i class="bi bi-info-circle-fill"></i>
+                    </span>
+                </div>
+
+                <button
+                    class="btn px-1 pb-0 text-danger"
+                    onclick="resetFileInput(this)"
+                    data-target="anexo"
                     data-bs-toggle="tooltip"
-                    data-bs-title="Extensões: .png, .jpg, .jpeg, .svg e .heic | Máximo: 10 MB"
+                    data-bs-title="Limpar arquivos"
                 >
-                    <i class="bi bi-info-circle-fill"></i>
-                </span>
+                    <i class="bi bi-trash3"></i>
+                </button>
             </div>
 
             <input
@@ -18,13 +30,13 @@
                 required
                 class="form-control"
                 data-file-bite="10485760"
-                data-file-extensions=".png, .jpg, .jpeg, .svg"
+                data-file-extensions=".png, .jpg, .jpeg, .svg, .heic"
                 onchange="validateFileInput(this)"
             />
-        </label>
+        </label>,0
 
-        <div>
-            <div>&nbsp;</div>
+        <div class="col-sm-1">
+            <div class="label-clearfix last-lg"></div>
             <button type="submit" class="btn btn-primary">Ok</button>
         </div>
     </div>
