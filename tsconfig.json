@@ -5,12 +5,11 @@
     "compilerOptions": {
         "strictNullChecks": true,
 
-        "baseUrl": ".",
         "paths": {
-            "@layouts/*": ["src/layouts/*"],
-            "@includes/*": ["src/includes/*"],
-            "@components/*": ["src/components/*"],
-            "@styles/*": ["src/styles/*"]
+            "@layouts/*": ["./src/layouts/*"],
+            "@includes/*": ["./src/includes/*"],
+            "@components/*": ["./src/components/*"],
+            "@styles/*": ["./src/styles/*"]
         }
     }
 }

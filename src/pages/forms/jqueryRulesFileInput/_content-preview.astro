@@ -1,0 +1,87 @@
+<form action="" method="POST" enctype="multipart/form-data">
+    <h5 class="mb-1">Modelo 1</h5>
+    <label data-plugin="jqueryRulesFileInput">
+        <div class="d-flex align-items-center justify-content-between gap-2">
+            <div class="d-flex align-items-center gap-1">
+                <span>Anexar Arquivo:</span>
+                <div 
+                    data-bs-toggle="tooltip" 
+                    data-bs-title="Extensões permitidas: pdf, jpg, jpeg, png, doc, docx, xls, xlsx, ppt, pptx, zip) | Máximo: 10 MB"
+                >
+                    <i class="bi bi-info-circle-fill"></i>
+                </div>
+            </div>
+
+            <button 
+                class="btn px-1 pb-0 text-danger" 
+                role="button" 
+                data-bs-toggle="tooltip" 
+                data-bs-title="Remover arquivo(s)"
+                data-target="anexo"
+                style="display: none;"
+            >
+                <i class="bi bi-trash-fill"></i>
+            </button>
+        </div>
+
+        <input 
+            type="file" 
+            name="anexo" 
+            multiple 
+            class="form-control"
+            accept=".pdf, .jpg, .jpeg, .png, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip"
+        />
+    </label>
+    <hr>
+
+    <h5 class="mb-1">Modelo 2</h5>
+    <div class="d-flex align-items-end gap-1" >
+        <label role="button" class="d-flex align-items-center justify-content-between gap-2" data-plugin="jqueryRulesFileInput">
+            <div class="d-flex align-items-center gap-1">
+                <div 
+                    data-bs-toggle="tooltip" 
+                    data-bs-title="Extensões permitidas: pdf, jpg, jpeg, png, doc, docx, xls, xlsx, ppt, pptx, zip | Máximo: 10 MB"
+                >
+                    <i class="bi bi-paperclip fs-5"></i>
+                </div>
+
+                <input 
+                    type="file" 
+                    name="anexo2" 
+                    multiple 
+                    hidden
+                    accept=".pdf, .jpg, .jpeg, .png, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip"
+                />
+                <span data-anexo="name" class="text-muted"></span>
+            </div>
+
+            <button 
+                class="btn px-1 pb-0 text-danger" 
+                role="button" 
+                data-bs-toggle="tooltip" 
+                data-bs-title="Remover arquivo(s)"
+                data-target="anexo2"
+                style="display: none;"
+            >
+                <i class="bi bi-trash-fill"></i>
+            </button>
+        </label>
+    </div>
+</form>
+
+<script is:inline src="/assets/plugins/jqueryRulesFileInput.js"></script>
+
+<script is:inline>
+    $(document).ready(function () {
+        $('[data-plugin="jqueryRulesFileInput"]').jqueryRulesFileInput({
+            debug: true,
+            maxSize: 10485760,
+            extensions: '.pdf, .jpg, .jpeg, .png, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip',
+            messages: {
+                invalidExtension : (ext, file)  => `Arquivo "${file}" não permitido. Extensões: ${ext}`,
+                maxSizeExceeded  : (mb)         => `Tamanho total excede o máximo de ${mb} MB`,
+                selected         : (n)          => `${n} arquivo(s) selecionado(s)`,
+            }
+        });
+    });
+</script>
